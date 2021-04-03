@@ -8,9 +8,9 @@ module.exports = {
     theme: {
         extend: {},
         fontFamily: {
-            'sans': ['"Open Sans"'],
-            'display': ['Oswald'],
-            'body': ['"Open Sans"']
+            'sans': ['Open Sans'],
+            'display': ['Open Sans'],
+            'title': ['Poppins']
         },
         colors: colors
     },

@@ -29,7 +29,7 @@ export default class MyDocument extends Document {
         <Head>
           <link rel="stylesheet" href="/tailwind.output.css" />
         </Head>
-        <body>
+        <body className="font-sans">
           <Main />
           <NextScript />
           <div id="modals"></div>

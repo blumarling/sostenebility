@@ -1,16 +1,30 @@
-import React, {useEffect} from 'react'
-import { Hero } from 'ragnarok'
-import styled from 'styled-components'
+import useDynamicCompo from '../hooks/useDynamicCompo'
+import withHeader from '../hoc/withHeader'
 
-const Home = () => {
+const Home = ({ components }) => {
+  
+  const { views } = useDynamicCompo({components})
 
   return (
-    <div><Hero title="cazza"></Hero></div>
+    <div>
+      { views }      
+    </div>
   )
 }
 
-const CasaContainer = styled.div`
-  ${props => props.theme.font.bold};
-`
+export async function getStaticProps(context) {
 
-export default Home
+  const page01 = require('../static_data/homepage').default
+  const footerData = require('../static_data/footer').default
+  const headerList = require('../static_data/header').default
+
+  return {
+    props: {
+      ...page01,
+      footerData,
+      headerList
+    }
+  }
+}
+
+export default withHeader(Home)

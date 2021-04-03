@@ -1,16 +1,23 @@
-import { useState } from 'react'
-import ReactDOM from 'react-dom'
-import ModalCompoSelector from "../editor-components/ModalCompoSelector"
+import { useDispatch, useSelector } from 'react-redux'
+import { addModal, removeModal } from '../redux/modals/actions'
+import { selectActiveModals } from '../redux/modals/selectors'
 
 const useModal = () => {
 
-  const [modalIsOpen, setModalOpen] = useState()
+  const dispatch = useDispatch()
+  const activeModals = useSelector(selectActiveModals)  
+  const isAlertModalOpen = activeModals.find(item => item.type === 'alert')
+  const isHomeModalOpen = activeModals.find(item => item.type === 'home')
+
+  const openModal = (customModal) => dispatch(addModal(customModal))
+  const closeModal = (customModal) => dispatch(removeModal(customModal))
 
   return {
-    openModal: () => setModalOpen(true),
-    closeModal: () => setModalOpen(false),
-    modalIsOpen,
-
+    openModal,
+    closeModal,
+    activeModals,
+    isAlertModalOpen,
+    isHomeModalOpen
   }
 }
 

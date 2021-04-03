@@ -36,7 +36,7 @@ const makeStore = () => {
 
         const persistConfig = {
             key: 'nextjs',
-            whitelist: ['fromClient'],
+            whitelist: ['fromClient', 'common'],
             blacklist: ['navigation', 'notifications'],
             storage
         };
