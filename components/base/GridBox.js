@@ -1,12 +1,9 @@
 import React, { useState, useEffect } from 'react'
+import useDynamicCompo from '../../hooks/useDynamicCompo'
 import classNames from 'classnames'
 import dynamic from 'next/dynamic'
 import styled, { css } from "styled-components"
-import H2 from '../typography/H2'
 import H3 from '../typography/H3'
-import H4 from '../typography/H4'
-import Paragraph from '../typography/Paragraph'
-import SingleBulletPoint from './SingleBulletPoint'
 
 const importView = componentName => {
   return dynamic(() =>
@@ -15,25 +12,10 @@ const importView = componentName => {
   )
 }
 
-const GridBox = ({title, titleColor, singleItemComponent,
-  boxed, paddingTop, paddingBottom, list = [],}) => {
+const GridBox = ({title, titleColor, CompoListType, backgroundColor,
+  boxed, paddingTop, paddingBottom, list = [], ...props }) => {
 
-  const [views, setViews] = useState([])
-
-  useEffect(() => {
-    async function loadViews () {
-      const componentPromises =
-        list.map(
-            async (item, index) => {
-              const View = importView(singleItemComponent)
-              return <View key={item.id} {...item} />
-            }
-          )
-      const allViews = await Promise.all(componentPromises)
-      setViews(allViews)
-    }
-    loadViews()
-  }, [list])
+  const { views } = useDynamicCompo({ components: list, componentType : CompoListType })
 
   const blockClasses = classNames(
     'flex w-full flex-col md:flex-row items-center justify-center px-8 py-12',
@@ -41,9 +23,11 @@ const GridBox = ({title, titleColor, singleItemComponent,
       'max-w-screen-lg': !!boxed
     }
   )
-
+  
   return (
-    <div className="flex-col flex items-center justify-center bg-white py-10 pb-20">
+    <div
+      className={`flex-col flex items-center justify-center py-10 pb-20 ${backgroundColor}`}
+    >
       { !!title && (
         <div className="pt-5 pb-6 px-10">
           <H3 color={titleColor}>

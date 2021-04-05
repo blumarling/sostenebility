@@ -28,10 +28,10 @@ const Footer = ({menuList = [], logourl, boxed, copyright}) => {
         </div>
         <div className="flex w-full md:w-auto md:flex-1 justify-between md:space-x-5 md:flex-row flex-col">
           {
-            menuList.map(({title, list}) => (
-              <div className="flex flex-1 md:px-4 flex-col mt-5 md:mt-0" key={title}>
-                <MenuLabel href="#" >{title}</MenuLabel>
-                {list.map(({label, link}) => <MenuListEl key={label} href={link}>{label}</MenuListEl>)}
+            menuList?.map(({title, children, id}) => (
+              <div className="flex flex-1 md:px-4 flex-col mt-5 md:mt-0" key={id}>
+                <MenuLabel>{title}</MenuLabel>
+                {children?.map(({title, url, id}) => <MenuListEl key={id} href={url}>{title}</MenuListEl>)}
               </div>
             ))
           }

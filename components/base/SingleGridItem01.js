@@ -5,7 +5,7 @@ import H4 from '../typography/H4'
 import Paragraph from '../typography/Paragraph'
 
 const SingleGridItem01 = ({ titleColor, paragraphColor,
-  title, paragraph, link, image }) => {
+  title, paragraph, link = '', image }) => {
 
   return (
     <div className="flex flex-col justify-between items-center md:w-1/3 mb-20 text-center px-6 h-80 md:mb-0">

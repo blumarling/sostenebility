@@ -24,8 +24,8 @@ const Navbar = ({menuList = [], logourl, boxed}) => {
         <LogoHeader src={logourl} href="/" />
         <div className="hidden md:flex md:ml-10 md:pr-4 md:space-x-8">
           {
-            menuList.map(item => <SingleItem {...item}
-              key={item.title}
+            menuList?.map(item => <SingleItem {...item}
+              key={item.id}
               setCurrentActive={setCurrentActive}
               currentActive={currentActive}
               closeAllSubMenu={closeAllSubMenu}
@@ -41,7 +41,7 @@ const Navbar = ({menuList = [], logourl, boxed}) => {
 }
 
 // Single Item 
-const SingleItem = ({title, link, list, closeOthers, closeAllSubMenu,
+const SingleItem = ({title, url = '', id, children, closeOthers, closeAllSubMenu,
   setCurrentActive, currentActive}) => {
 
   const [subItemOpen, setSubItemOpen] = useState(false)
@@ -59,8 +59,11 @@ const SingleItem = ({title, link, list, closeOthers, closeAllSubMenu,
   },[closeAllSubMenu])
 
   return (
-    <div className="relative" key={title}>
-      <Link href={link} passHref>
+    <div className="relative">
+      <Link
+        href={children?.length > 0 ? '#' : url}
+        passHref
+      >
         <MenuListEl
           onMouseOver={onMouseOver}
           onClick={() => {
@@ -69,15 +72,14 @@ const SingleItem = ({title, link, list, closeOthers, closeAllSubMenu,
           }}
         >
           {title}
-          {list?.length > 0 && <CaretDown size={10} />}
+          {children?.length > 0 && <CaretDown size={10} />}
         </MenuListEl>
       </Link>
-      {list?.length > 0 && subItemOpen && (
+      {children?.length > 0 && subItemOpen && (
         <SecondLevelMenu>
-          { list.map(subitem => (
-            <Link href={subitem.link} passHref>
+          { children?.map(subitem => (
+            <Link href={subitem.url} passHref key={subitem.id}>
               <MenuListEl
-                key={subitem.title}
                 onClick={() => {
                   closeOthers();
                   setCurrentActive(null)

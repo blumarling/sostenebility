@@ -4,7 +4,7 @@ import styled, { css } from "styled-components"
 import useCommonAnimations from '../../hooks/useCommonAnimations'
 import H1 from '../typography/H1'
 
-const Hero = ({ title = '', bgImage = '', titleColor = '',
+const Hero = ({ title = '', image = '', image_mobile = '', titleColor = '',
 full = '', leftBottomTitle  = ''}) => {
 
   const { scrollDown } = useCommonAnimations()
@@ -17,13 +17,20 @@ full = '', leftBottomTitle  = ''}) => {
   )
 
   return (
-    <HeroContainer full={full} className="flex w-full max-h-screen items-center justify-center text-center">
+    <HeroContainer
+      full={full}
+      className="flex w-full max-h-screen items-center justify-center text-center"
+    >
       <div className={boxClasses}>
-        <H1 color={titleColor}>{title}</H1>
+        <H1 color={titleColor}><span dangerouslySetInnerHTML={{__html: title}}/></H1>
       </div>
       <img
-        className="h-full w-full object-cover absolute hero-pic"
-        src={bgImage || 'https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2850&q=80'} alt=""
+        className="h-full w-full object-cover hidden md:block absolute hero-pic"
+        src={image || 'https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2850&q=80'} alt=""
+      />
+      <img
+        className="h-full w-full object-cover absolute hero-pic md:hidden"
+        src={image_mobile || 'https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2850&q=80'} alt=""
       />
       {!!full && <img
         className="arrow-down"
@@ -39,9 +46,15 @@ const HeroContainer = styled.div`
   background-color: #000;
   overflow: hidden;
   position:relative;
-  height: 500px;
+  height: 250px;
+  @media (min-width: 990px) {
+    height: 500px;
+  }
   ${props => props.full && css`
     height: calc(100vh - 150px);
+    @media (min-width: 990px) {
+      height: calc(100vh - 150px);
+    }
   `}
   .hero-pic {
     z-index:0;

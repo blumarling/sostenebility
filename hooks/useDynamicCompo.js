@@ -1,19 +1,18 @@
 import React, { lazy, useCallback, useEffect, useState } from 'react'
 import dynamic from 'next/dynamic'
 
-const useDynamicCompo = ({components}) => {
+const useDynamicCompo = ({components, componentType}) => {
 
   const [views, setViews] = useState([])
   
   useEffect(() => {
-    console.log({components})
     async function loadViews () {
       const componentPromises =
         components
           .map(
             async (item, index) => {
-              const View = importView(item.component)
-              return <View key={item.id} {...item} />
+              const View = importView(componentType ? componentType : item['component'] )
+              return <View key={item.id ? item.id : index} {...item} />
             }
           )
       const allViews = await Promise.all(componentPromises)

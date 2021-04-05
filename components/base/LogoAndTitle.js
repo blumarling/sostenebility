@@ -3,7 +3,7 @@ import React from 'react'
 import styled, { css } from "styled-components"
 import H2 from '../typography/H2'
 
-const TitleLogo = ({ title, titleColor, boxed, paddingTop, paddingBottom }) => {
+const LogoAndTitle = ({ title, titleColor, boxed, paddingTop, paddingBottom }) => {
 
   const blockClasses = classNames(
     'flex w-full items-center justify-center flex-col px-8 py-6 pb-16 md:pb-28 md:py-16 text-center',
@@ -23,4 +23,4 @@ const TitleLogo = ({ title, titleColor, boxed, paddingTop, paddingBottom }) => {
 }
 
 
-export default TitleLogo
+export default LogoAndTitle
