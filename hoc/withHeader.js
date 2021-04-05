@@ -29,14 +29,14 @@ const withHeader = Page => {
         </Head>
         <Navbar
           boxed
-          logourl="./img/logo.svg"
+          logourl="/img/logo.svg"
           menuList={headerList}
         />
           <Page {...props} />
           { isHomeModalOpen && <HomeModal onClose={() => closeModal({type: 'home'})} /> }
         <Footer
           boxed
-          logourl="./img/logo-white.svg"
+          logourl="/img/logo-white.svg"
           menuList={footerData}
           copyright={`2021 © Copyright - Diventarenergia | P.IVA 04907900262`}
         />

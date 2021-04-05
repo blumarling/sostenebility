@@ -1,8 +1,8 @@
-import useDynamicCompo from '../hooks/useDynamicCompo'
-import withHeader from '../hoc/withHeader'
-import makePage from '../utils/makePage'
-import makeMenu from '../utils/makeMenu'
-import makeFooter from '../utils/makeFooter'
+import useDynamicCompo from '../../hooks/useDynamicCompo'
+import withHeader from '../../hoc/withHeader'
+import makePage from '../../utils/makePage'
+import makeMenu from '../../utils/makeMenu'
+import makeFooter from '../../utils/makeFooter'
 import axios from 'axios'
 
 const Home = ({ components }) => {

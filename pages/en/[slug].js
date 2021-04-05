@@ -1,8 +1,8 @@
-import useDynamicCompo from '../hooks/useDynamicCompo'
-import withHeader from '../hoc/withHeader'
-import makePage from '../utils/makePage'
-import makeMenu from '../utils/makeMenu'
-import makeFooter from '../utils/makeFooter'
+import useDynamicCompo from '../../hooks/useDynamicCompo'
+import withHeader from '../../hoc/withHeader'
+import makePage from '../../utils/makePage'
+import makeMenu from '../../utils/makeMenu'
+import makeFooter from '../../utils/makeFooter'
 import axios from 'axios'
 
 const Home = ({ components }) => {
@@ -19,7 +19,7 @@ const Home = ({ components }) => {
 export async function getStaticPaths() {
   
   // const lang = process.env.DEFAULT_LANG
-  const locales = ['it']
+  const locales = ['en']
   
   try {
     
@@ -48,8 +48,9 @@ export async function getStaticPaths() {
 export async function getStaticProps({ res, params }) {
   
   const { slug } = params
-  const lang = 'it'
-  
+
+  const lang = 'en'
+
   try {
     const pageFromCMS = await axios.get(`${process.env.CMS_URL}/wp/v2/pages/?slug=${slug}&lang=${lang}`)
     const menuFromCMS = await axios.get(`${process.env.CMS_URL}/wp-api-menus/v2/menus/2`)

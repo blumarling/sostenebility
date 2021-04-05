@@ -6,7 +6,7 @@ import LogoHeader from "../atoms/LogoHeader"
 import CaretDown from '../svg/CaretDown'
 import Link from 'next/link'
 
-const Navbar = ({menuList = [], logourl, boxed}) => {
+const Navbar = ({menuList = [], logourl = '', boxed}) => {
 
   const [closeAllSubMenu, setCloseAllSubMenu] = useState(0)
   const [currentActive, setCurrentActive] = useState(null)

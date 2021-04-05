@@ -14,8 +14,4 @@ module.exports = {
   cssLoaderOptions: {
     url: false
   },
-  i18n: {
-    locales: ['it', 'en',],
-    defaultLocale: 'it',
-  },
 }
