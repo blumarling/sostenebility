@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "export": "next export",
+    "export": "next build && next export",
     "start": "next start",
     "tailwind-config-viewer": "tailwind-config-viewer -o",
     "build:tailwind": "NODE_ENV=production tailwindcss build tailwind/index.css -o tailwind.output.css",
