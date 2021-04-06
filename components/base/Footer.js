@@ -46,7 +46,7 @@ const Footer = ({menuList = [], logourl, boxed, copyright}) => {
 }
 
 const FooterContainer = styled.nav.attrs({
-  className: 'flex justify-center items-center md:py-10 py-5 px-6 bg-primary-900 flex-col'
+  className: 'flex justify-center items-center md:py-10 py-5 px-6 bg-primary-900 flex-col mt-56'
 })`
 `
 const MenuListEl = styled.a.attrs({

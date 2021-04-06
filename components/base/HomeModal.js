@@ -52,8 +52,8 @@ const HomeModal = ({onClose}) => {
             <CloseIcon color={'#797781'} size={15} />
           </CloseButton>
         </Header>
-        <Body className="flex flex-row">
-          <div className="flex flex-col flex-1 p-12 justify-center">
+        <Body className="flex flex-col md:flex-row">
+          <div className="flex flex-col flex-1 md:p-12 p-6 justify-center">
             <H2 color={`text-primary-900 mb-5`}>Superbonus 110</H2>
             <div className="mb-5">
               <Paragraph color="text-primary-900">
@@ -64,9 +64,9 @@ const HomeModal = ({onClose}) => {
               <a href="#" className={`font-bold text-primary-900`}>Scopri di più</a>
             </div>
           </div>
-          <div className="w-1/2">
+          <div className="w-full md:w-1/2">
             <img
-              className="h-full object-cover"
+              className="w-full md:h-full object-cover"
               src={'https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&h=450&w=450&q=80'} alt=""
             />
           </div>
@@ -87,9 +87,14 @@ const HomeModalContainer = styled.div`
   overflow: hidden;
   opacity: 0;
   transform: scale(0.85);
+  @media (max-width: 767px) {
+    width: 95%;
+    height: 85%;
+  }
 `
 const CloseButton = styled.div`
   cursor: pointer;
+  z-index: 99;
 `
 const Header = styled.div`
   width: 100%;
