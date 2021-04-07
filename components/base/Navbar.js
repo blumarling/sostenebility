@@ -88,6 +88,7 @@ const SingleItem = ({title, url = '', id, children, closeOthers, closeAllSubMenu
   const isMobile = window.innerWidth < 768
 
   const onMouseOver = () => {
+    if(isMobile) return
     setCurrentActive(title);
     closeOthers();
     setSubItemOpen(true);
@@ -121,7 +122,7 @@ const SingleItem = ({title, url = '', id, children, closeOthers, closeAllSubMenu
         </Link> :
         <MenuListElDiv
           onMouseOver={onMouseOver}
-          onClick={() => {
+          onClick={isMobile ? () => {} : () => {
             closeOthers();
             setCurrentActive(null)
           }}
