@@ -19,6 +19,9 @@ jobs:
           paths:
             - ./node_modules
       - run:
+          name: build-package
+          command: npm run export
+      - run:
           name: Deploy over SSH
           command: scp -r -o  StrictHostKeyChecking=no -P 25088 ~/hello/output rw4crpqo@lhcp3181.webapps.net:/home/rw4crpqo/public_html/build;
 
