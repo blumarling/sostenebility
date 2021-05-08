@@ -36,7 +36,7 @@ const withHeader = Page => {
           { isHomeModalOpen && <HomeModal onClose={() => closeModal({type: 'home'})} /> }
         <Footer
           boxed
-          logourl="/img/logo-white.svg"
+          logourl="/img/logo-sostenibility-bianco.svg"
           menuList={footerData}
           copyright={`2021 © Copyright - Diventarenergia | P.IVA 04907900262`}
         />

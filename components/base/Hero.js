@@ -3,13 +3,14 @@ import React from 'react'
 import styled, { css } from "styled-components"
 import useCommonAnimations from '../../hooks/useCommonAnimations'
 import H1 from '../typography/H1'
+import Button from './Button'
 
 const Hero = ({ title = '', image = '', image_mobile = '', titleColor = '',
-full = '', leftBottomTitle  = ''}) => {
+full = '', leftBottomTitle  = '', buttonLabel, buttonLink,}) => {
 
   const { scrollDown } = useCommonAnimations()
   const boxClasses = classNames(
-    `max-w-screen-lg w-full h-full z-10 flex px-8`,
+    `max-w-screen-lg w-full h-full z-10 flex px-8 flex-col`,
     {
       'justify-start items-end text-left pb-16': leftBottomTitle,
       'items-center justify-center text-center': !leftBottomTitle,
@@ -22,7 +23,16 @@ full = '', leftBottomTitle  = ''}) => {
       className="flex w-full max-h-screen items-center justify-center text-center"
     >
       <div className={boxClasses}>
-        <H1 color={titleColor}><span dangerouslySetInnerHTML={{__html: title}}/></H1>
+        <H1 color={titleColor}>
+          <span dangerouslySetInnerHTML={{__html: title}}/>
+        </H1>
+        {buttonLabel && buttonLink && <Button
+          className="mt-10"
+          label={buttonLabel}
+          href={buttonLink}
+          labelColor="text-primary-900"
+          uppercase
+        />}
       </div>
       <img
         className="h-full w-full object-cover hidden md:block absolute hero-pic"

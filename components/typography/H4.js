@@ -14,7 +14,6 @@ const H4Container = styled.h4.attrs({
 })`
   z-index:2;
   white-space: break-spaces;
-  letter-spacing: 1.12px;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 `
