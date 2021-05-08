@@ -29,16 +29,12 @@ jobs:
           command: scp -r -o  StrictHostKeyChecking=no -P 25088 ./build.zip rw4crpqo@lhcp3181.webapps.net:/home/rw4crpqo/public_html;
       - run:
           name: enter-server
-          command: ssh -p 25088 rw4crpqo@lhcp3181.webapps.net && cd public_html
-      - run:
-          name: unzip-package
-          command: unzip build.zip 
-      - run:
-          name: move-content-out-package
-          command: mv -v ./out/* ./
-      - run:
-          name: exit
-          command: exit
+          command: |
+            ssh -p 25088 rw4crpqo@lhcp3181.webapps.net |
+            cd public_html |
+            unzip build.zip |
+            mv -v ./out/* ./ |
+            exit
 
 workflows:
   version: 2
