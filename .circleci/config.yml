@@ -22,8 +22,23 @@ jobs:
           name: build-package
           command: npm run export
       - run:
+          name: zip-package
+          command: zip -r build.zip out
+      - run:
           name: Deploy over SSH
-          command: scp -r -o  StrictHostKeyChecking=no -P 25088 ~/hello/output rw4crpqo@lhcp3181.webapps.net:/home/rw4crpqo/public_html/build;
+          command: scp -r -o  StrictHostKeyChecking=no -P 25088 ./build.zip rw4crpqo@lhcp3181.webapps.net:/home/rw4crpqo/public_html;
+      - run:
+          name: enter-server
+          command: ssh -p 25088 rw4crpqo@lhcp3181.webapps.net && cd public_html
+      - run:
+          name: unzip-package
+          command: unzip build.zip 
+      - run:
+          name: move-content-out-package
+          command: mv -v ./out/* ./
+      - run:
+          name: exit
+          command: exit
 
 workflows:
   version: 2
