@@ -9,20 +9,20 @@ const Hero = ({ title = '', image = '', image_mobile = '', titleColor = '',
 full = '', leftBottomTitle  = '', buttonLabel, buttonLink,}) => {
 
   const { scrollDown } = useCommonAnimations()
-  const boxClasses = classNames(
-    `max-w-screen-lg w-full h-full z-10 flex px-8 flex-col`,
-    {
-      'justify-start items-end text-left pb-16': leftBottomTitle,
-      'items-center justify-center text-center': !leftBottomTitle,
-    }
-  )
 
   return (
     <HeroContainer
       full={full}
-      className="flex w-full max-h-screen items-center justify-center text-center"
+      isImageThere={!!image}
+      className="flex w-full max-h-screen items-center justify-center text-center bg-primary-900"
     >
-      <div className={boxClasses}>
+      <div className={classNames(
+        `max-w-screen-lg w-full h-full z-10 flex px-8 flex-col`,
+        {
+          'items-start justify-end text-left pb-16': leftBottomTitle,
+          'items-center justify-center text-center': !leftBottomTitle,
+        }
+      )}>
         <H1 color={titleColor}>
           <span dangerouslySetInnerHTML={{__html: title}}/>
         </H1>
@@ -34,14 +34,14 @@ full = '', leftBottomTitle  = '', buttonLabel, buttonLink,}) => {
           uppercase
         />}
       </div>
-      <img
+      {!!image && <img
         className="h-full w-full object-cover hidden md:block absolute hero-pic"
         src={image} alt=""
-      />
-      <img
+      />}
+      {!!image_mobile && <img
         className="h-full w-full object-cover absolute hero-pic md:hidden"
         src={image_mobile || 'https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2850&q=80'} alt=""
-      />
+      />}
       {!!full && <img
         className="arrow-down"
         src={'./img/arrow-down.svg'} alt=""
@@ -53,12 +53,15 @@ full = '', leftBottomTitle  = '', buttonLabel, buttonLink,}) => {
 }
 
 const HeroContainer = styled.div`
-  background-color: #000;
   overflow: hidden;
   position:relative;
   height: 250px;
+
   @media (min-width: 990px) {
     height: 500px;
+    ${props => !props.isImageThere && css`
+      height: 250px;
+    `}
   }
   ${props => props.full && css`
     height: calc(100vh - 150px);

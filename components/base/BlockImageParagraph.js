@@ -27,9 +27,9 @@ const BlockImageParagraph = ({image, image_mobile, paragraph, paragraphColor,
           src={image_mobile || ''} alt=""
         />
       </div>
-      <div className="md:w-1/2 lg:p-24 xl:px-16 md:p-16 p-8 py-12 flex justify-center flex-col items-center">
+      <div className="md:w-1/2 lg:p-24 lg:py-0 xl:px-16 md:p-16 md:py-0 p-8 py-12 flex justify-center flex-col items-center">
         <div className="xl:max-w-lg max-w-sm">
-          <H2 color={titleColor} className="leading-tight mb-2">
+          <H2 color={titleColor} className="leading-tight mb-3">
             <span dangerouslySetInnerHTML={{__html: title}}/>
           </H2>
           <Paragraph color={paragraphColor}>

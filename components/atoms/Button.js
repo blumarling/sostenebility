@@ -7,11 +7,11 @@ const Button = ({onClick = () => {}, isLink, label, small, large,
 
   const htmlClasses = classNames(
     `main-button default rounded-md flex items-center justify-center
-  border border-transparent text-base font-medium rounded-md`,
+  border border-transparent text-base font-medium rounded-md bg-grey-900 text-white hover:bg-grey-600`,
     {
       'py-2 text-lg px-5': small,
       'py-4 text-lg px-10': medium,
-      'primary' : primary
+      'bg-primary-900 text-white hover:bg-primary-600' : primary
     }
   )
 
@@ -33,16 +33,9 @@ const Button = ({onClick = () => {}, isLink, label, small, large,
 const ButtonContainer = styled.div`
   cursor: pointer;
   &.default {
-    background-color: #f1f1f1;
-    color: #444;
     font-size: 16px;
-    &:hover {
-      background-color: #cccccc;
-    }
   }
   &.primary {
-    background-color: red;
-    color: #fff;
     font-size: 16px;
   }
 `

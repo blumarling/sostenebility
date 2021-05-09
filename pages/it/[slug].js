@@ -1,11 +1,10 @@
 import useDynamicCompo from '../../hooks/useDynamicCompo'
 import withHeader from '../../hoc/withHeader'
-import makePage from '../../utils/makePage'
-import makeMenu from '../../utils/makeMenu'
-import makeFooter from '../../utils/makeFooter'
 import axios from 'axios'
+import refreshData from '../../utils/refreshData'
+import withHeaderRefetch from '../../hoc/withHeaderRefetch'
 
-const Home = ({ components }) => {
+const DynamicPage = ({ components }) => {
   
   const { views } = useDynamicCompo({components})
 
@@ -20,6 +19,7 @@ export async function getStaticPaths() {
   
   // const lang = process.env.DEFAULT_LANG
   const locales = ['it']
+  const lang = 'it'
   
   try {
     
@@ -51,20 +51,19 @@ export async function getStaticProps({ res, params }) {
   const lang = 'it'
   
   try {
-    const pageFromCMS = await axios.get(`${process.env.CMS_URL}/wp/v2/pages/?slug=${slug}&lang=${lang}`)
-    const menuFromCMS = await axios.get(`${process.env.CMS_URL}/wp-api-menus/v2/menus/2`)
-    const footerMenuFromCMS = await axios.get(`${process.env.CMS_URL}/wp-api-menus/v2/menus/3`)
-    
-    const page = makePage(pageFromCMS.data[0])
-    const headerList = makeMenu(menuFromCMS.data)
-    const footerData = makeFooter(footerMenuFromCMS.data)
+
+    const {
+      page,
+      headerList,
+      footerData
+    } = await refreshData({slug, lang})
   
     return {
       props: {
         ...page,
         footerData,
         headerList
-      }
+      },
     }
 
   } catch(e) {
@@ -73,4 +72,6 @@ export async function getStaticProps({ res, params }) {
   }
 }
 
-export default withHeader(Home)
+export default process.env.NEXT_PUBLIC_IS_DEV
+  ? withHeaderRefetch(DynamicPage, refreshData)
+  : withHeader(DynamicPage)

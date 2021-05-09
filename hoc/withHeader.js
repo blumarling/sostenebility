@@ -8,7 +8,7 @@ import { toggleHomeModal } from '../redux/common/actions'
 import { useDispatch, useSelector } from 'react-redux'
 import { selectHomeModalSeen } from '../redux/common/selectors'
 
-const withHeader = Page => {
+const withHeader =  Page => {
   return ({ footerData, seo, headerList, ...props }) => {
 
     const { openModal, closeModal, isHomeModalOpen } = useModal()
@@ -26,6 +26,21 @@ const withHeader = Page => {
       <div>
         <Head>
           <title>Sostenibility || {seo?.title || 'Home'}</title>
+          <link href={seo.canonical} rel="canonical" />
+          {seo?.description && <meta name="description" content={seo.description} />}
+          {
+            seo.og_title
+              ? <meta name="og:title" property="og:title" content={seo.og_title}/>
+              : <meta name="og:title" property="og:title" content={seo.title}/>
+          }
+          {
+            seo?.og_image && <meta name="og:image" property="og:image" content={seo.og_image} />
+          }
+          {
+            process.NEXT_PUBLIC_IS_DEV
+              ? <meta name="robots" content="noindex, nofollow" />
+              : <meta name="robots" content="index, follow" />
+          }
         </Head>
         <Navbar
           boxed

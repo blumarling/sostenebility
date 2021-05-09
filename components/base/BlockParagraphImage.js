@@ -15,7 +15,7 @@ const BlockParagraphImage = ({image, paragraph, paragraphColor, boxed, title}) =
   return (
     <BlockParagraphImageContainer className={blockClasses}>
       
-      <div className="md:w-1/2 lg:p-24 xl:px-36 md:p-16 p-8 py-12 flex flex-col items-start justify-center">
+      <div className="md:w-1/2 lg:p-24 xl:px-36 md:p-16 p-8 py-0 flex flex-col items-start justify-center">
         <H2 color={paragraphColor} className="leading-tight mb-2">{title}</H2>
         <Paragraph color={paragraphColor}>
           {paragraph}

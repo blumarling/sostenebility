@@ -29,53 +29,61 @@ const Navbar = ({menuList = [], logourl = '', boxed}) => {
   }
 
   return (
-    <NavbarContainer ariaLabel="Global">
-      <div className={boxClasses}>
-        <LogoHeader src={logourl} href="/" />
-        <div className="hidden md:flex md:ml-10 md:pr-4 md:space-x-8">
-          {
-            menuList?.map(item => <SingleItem {...item}
-              key={item.id}
-              setCurrentActive={setCurrentActive}
-              currentActive={currentActive}
-              closeAllSubMenu={() => {
-                closeAllSubMenu()
-              }}
-              closeOthers={() => {
-                setCloseAllSubMenu(prev => prev + 1)
-              }}
-            />)
-          }
-        </div>
-        <Hamburger onClick={openMobileMenu} />
+    <>
+      <div className="w-full py-4 px-10 flex justify-center items-center bg-primary-900">
+        <img src="./img/phone-call.svg" className="h-4 mr-2"/>
+        <a href="tel:+39043873485" className="text-white underline">
+          Hai un'urgenza? Chiama subito
+        </a>
       </div>
+      <NavbarContainer ariaLabel="Global">
+        <div className={boxClasses}>
+          <LogoHeader src={logourl} href="/" />
+          <div className="hidden md:flex md:ml-10 md:pr-4 md:space-x-8">
+            {
+              menuList?.map(item => <SingleItem {...item}
+                key={item.id}
+                setCurrentActive={setCurrentActive}
+                currentActive={currentActive}
+                closeAllSubMenu={() => {
+                  closeAllSubMenu()
+                }}
+                closeOthers={() => {
+                  setCloseAllSubMenu(prev => prev + 1)
+                }}
+              />)
+            }
+          </div>
+          <Hamburger onClick={openMobileMenu} />
+        </div>
 
-      {/* menu mobile */}
-      <div
-        className={classNames(
-          `fixed top-0 left-0 w-full h-full bg-white z-50 flex flex-col p-12 pt-24 mobile-menu`,
-          {
-            'show': menuMobileOpen
-          }
-        )}
-      >
-        <div className="absolute right-0 top-0 p-10 z-30" onClick={closeMobileMenu}>
-          <CloseIcon size="25" color="#37576b"/>
-        </div>
-          {
-            menuList?.map(item => <SingleItem {...item}
-              key={item.id}
-              setCurrentActive={setCurrentActive}
-              currentActive={currentActive}
-              closeAllSubMenu={closeAllSubMenu}
-              closeOthers={() => {
-                setCloseAllSubMenu(prev => prev + 1)
-                closeMobileMenu(false)
-              }}
-            />)
-          }
-        </div>
-    </NavbarContainer>
+        {/* menu mobile */}
+        <div
+          className={classNames(
+            `fixed top-0 left-0 w-full h-full bg-white z-50 flex flex-col p-12 pt-24 mobile-menu`,
+            {
+              'show': menuMobileOpen
+            }
+          )}
+        >
+          <div className="absolute right-0 top-0 p-10 z-30" onClick={closeMobileMenu}>
+            <CloseIcon size="25" color="#37576b"/>
+          </div>
+            {
+              menuList?.map(item => <SingleItem {...item}
+                key={item.id}
+                setCurrentActive={setCurrentActive}
+                currentActive={currentActive}
+                closeAllSubMenu={closeAllSubMenu}
+                closeOthers={() => {
+                  setCloseAllSubMenu(prev => prev + 1)
+                  closeMobileMenu(false)
+                }}
+              />)
+            }
+          </div>
+      </NavbarContainer>
+    </>
   )
 
 }

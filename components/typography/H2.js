@@ -10,7 +10,7 @@ const H2 = ({children, color, className}) => {
 }
 
 const H2Container = styled.h2.attrs({
-  className: 'font-title text-3xl leading-snug md:text-4xl md:leading-snug'
+  className: 'font-title text-3xl leading-snug md:text-4xl md:leading-12 lg:leading-tight'
 })`
   z-index:2;
   white-space: break-spaces;
