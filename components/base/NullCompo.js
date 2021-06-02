@@ -5,7 +5,6 @@ const NullCompo = () => {
 
   return (
     <NullCompoContainer>
-      Ciao
     </NullCompoContainer>
   )
 

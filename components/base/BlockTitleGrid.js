@@ -41,27 +41,27 @@ const BlockTitleGrid = ({title, titleColor, paragraph, paragraphColor,
         </div>
         <div className={innerBlockClassesRight}>
           <SingleGridItem02
-            title="Amministrazione"
+            title="Informazioni"
             titleColor="text-primary-900"
-            paragraph={'esempio@sostenibility.com<br/>+39 01 234 56 78'}
+            paragraph={'<a href="mailto:info@sostenibility.it">info@sostenibility.it</a>'}
+            paragraphColor="text-primary-900"
+          />
+          <SingleGridItem02
+            title="Segreteria"
+            titleColor="text-primary-900"
+            paragraph={'<a href="mailto:segreteria@sostenibility.it">segreteria@sostenibility.it</a>'}
+            paragraphColor="text-primary-900"
+          />
+          <SingleGridItem02
+            title="Commerciale"
+            titleColor="text-primary-900"
+            paragraph={'<a href="mailto:commerciale@sostenibility.it">commerciale@sostenibility.it</a>'}
             paragraphColor="text-primary-900"
           />
           <SingleGridItem02
             title="Amministrazione"
             titleColor="text-primary-900"
-            paragraph={'esempio@sostenibility.com<br/>+39 01 234 56 78'}
-            paragraphColor="text-primary-900"
-          />
-          <SingleGridItem02
-            title="Amministrazione"
-            titleColor="text-primary-900"
-            paragraph={'esempio@sostenibility.com<br/>+39 01 234 56 78'}
-            paragraphColor="text-primary-900"
-          />
-          <SingleGridItem02
-            title="Amministrazione"
-            titleColor="text-primary-900"
-            paragraph={'esempio@sostenibility.com<br/>+39 01 234 56 78'}
+            paragraph={'<a href="mailto:amministrazione@sostenibility.it">amministrazione@sostenibility.it</a>'}
             paragraphColor="text-primary-900"
           />
         </div>

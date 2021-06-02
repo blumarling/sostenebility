@@ -20,7 +20,7 @@ const GridBox = ({title, titleColor, CompoListType, backgroundColor,
   const blockClasses = classNames(
     'flex w-full flex-col md:flex-row items-center justify-center px-8 py-12 ',
     {
-      'max-w-screen-lg': !!boxed
+      'max-w-screen-xl': !!boxed
     }
   )
   
@@ -29,7 +29,7 @@ const GridBox = ({title, titleColor, CompoListType, backgroundColor,
       className={`flex-col flex items-center justify-center md:py-10 md:pb-20 ${backgroundColor}`}
     >
       { !!title && (
-        <div className="pt-5 pb-6 px-10">
+        <div className="py-10 pt-20 md:py-6 px-10">
           <H3 color={titleColor} className="text-center">
             {title}
           </H3>
@@ -46,7 +46,7 @@ const GridBox = ({title, titleColor, CompoListType, backgroundColor,
 }
 
 const GridBoxContainer = styled.div.attrs({
-  className:' w-full flex items-start justify-center flex-col md:flex-row flex-wrap'
+  className:' w-full flex items-start justify-start flex-col md:flex-row flex-wrap'
 })`
 
 `

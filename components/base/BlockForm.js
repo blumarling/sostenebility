@@ -1,6 +1,6 @@
 import axios from 'axios'
 import classNames from 'classnames'
-import React from 'react'
+import React, {useState} from 'react'
 import styled, { css } from "styled-components"
 import useAxios from '../../hooks/useAxios'
 import H2 from '../typography/H2'
@@ -33,17 +33,26 @@ const BlockForm = ({title, titleColor, paragraph, paragraphColor,
     }
   )
 
-  // const { postData } = useAxios(`http://localhost:8888/cms/wp-json/contact-form-7/v1/contact-forms/202/feedback`)
-
+  const { postData } = useAxios(`http://api.sostenibility.it/wp-json/contact-form-7/v1/contact-forms/202/feedback`)
+  const [formObj, setFormObj] = useState({})
   const sendForm = async () => {
-    // const x = new FormData()
-    // x.append("t-name", "val")
-    // x.append("t-email", "val@val.it")
-    // x.append("t-subject", "val")
-    // x.append("t-message", "val")
-    // const query = await postData({ params: x })
+    try {
+      const x = new FormData()
+      x.append("t-name", formObj['t-name'])
+      x.append("t-surname", formObj['t-surname'])
+      x.append("t-email", formObj['t-email'])
+      x.append("t-phone", formObj['t-phone'])
+      x.append("t-message", formObj['t-message'])
+      const query = await postData({ params: x })
+      alert('messaggio inviato con successo')
+      window.location.href = '/'
+    } catch(e) {
+
+    }
+
   }
 
+  const isButtonAvailable = formObj['t-name'] &&  formObj['t-surname'] && formObj['t-email'] && formObj['t-message'] && formObj['t-email'].indexOf('@') > -1 && formObj['t-email'].indexOf('.') > -1
 
   return (
     <BlockFormContainer>
@@ -67,31 +76,37 @@ const BlockForm = ({title, titleColor, paragraph, paragraphColor,
             type="text"
             className="w-full border border-coolGray-400 rounded-md mb-5"
             placeholder="nome"
+            onChange={(e) => setFormObj((prev) => ({...prev, 't-name': e.target.value}))}
+
           />
           <input
             type="text"
-            className="w-full border border-coolGray-400 rounded-md mb-5"
+            className="nooutline w-full border border-coolGray-400 rounded-md mb-5"
+            onChange={(e) => setFormObj((prev) => ({...prev, 't-surname': e.target.value}))}
             placeholder="cognome"
           />
           <input
             type="email"
-            className="w-full border border-coolGray-400 rounded-md mb-5"
+            className="focus:outline-none w-full border border-coolGray-400 rounded-md mb-5"
+            onChange={(e) => setFormObj((prev) => ({...prev, 't-email': e.target.value}))}
             placeholder="email"
           />
           <input
             type="text"
             className="w-full border border-coolGray-400 rounded-md mb-5"
+            onChange={(e) => setFormObj((prev) => ({...prev, 't-phone': e.target.value}))}
             placeholder="telefono"
           />
           <textarea
             className="w-full border border-coolGray-400 rounded-md h-36"
             placeholder="messaggio"
+            onChange={(e) => setFormObj((prev) => ({...prev, 't-message': e.target.value}))}
             style={{ resize: 'none' }}
           />
 
           <div
-            className="border border-primary-900 rounded-md py-2 px-4 mt-5"
-            onClick={sendForm}
+            className={`border bg-primary-900 text-white hover:bg-primary-600 rounded-md py-2 px-4 mt-5 cursor-pointer ${isButtonAvailable ? '' : 'opacity-50'}`}
+            onClick={isButtonAvailable ? sendForm : () => {}}
           >
             INVIA
           </div>
@@ -106,7 +121,19 @@ const BlockForm = ({title, titleColor, paragraph, paragraphColor,
 const BlockFormContainer = styled.div.attrs({
   className:' w-full flex items-center justify-center md:mt-0 bg-white'
 })`
-  
+  input, textarea {
+    border: 1px solid #99a3a9!important;
+    &:focus {
+      outline-width: 0!important;
+      outline: 0!important;
+      border: 0;
+    }
+    &:active {
+      outline-width: 0!important;
+      border: 0;
+      outline: 0!important;
+    }
+  }
 `
 
 export default BlockForm

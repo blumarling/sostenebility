@@ -1,7 +1,10 @@
 import classNames from 'classnames'
 import React from 'react'
+import { useDispatch } from 'react-redux'
 import styled, { css } from "styled-components"
 import useCommonAnimations from '../../hooks/useCommonAnimations'
+import useModal from '../../hooks/useModal'
+import { toggleHomeModal } from '../../redux/common/actions'
 import H1 from '../typography/H1'
 import Button from './Button'
 
@@ -9,6 +12,8 @@ const Hero = ({ title = '', image = '', image_mobile = '', titleColor = '',
 full = '', leftBottomTitle  = '', buttonLabel, buttonLink,}) => {
 
   const { scrollDown } = useCommonAnimations()
+  const dispatch = useDispatch()  
+  const { openModal } = useModal()
 
   return (
     <HeroContainer
@@ -29,7 +34,10 @@ full = '', leftBottomTitle  = '', buttonLabel, buttonLink,}) => {
         {buttonLabel && buttonLink && <Button
           className="mt-10"
           label={buttonLabel}
-          href={buttonLink}
+          onClick={() => {
+            openModal({type: 'home'})
+            dispatch(toggleHomeModal())
+          }}
           labelColor="text-primary-900"
           uppercase
         />}

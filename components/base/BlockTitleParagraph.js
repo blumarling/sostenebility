@@ -7,7 +7,7 @@ import Paragraph from '../typography/Paragraph'
 const BlockTitleParagraph = ({title, titleColor, paragraph, paragraphColor, boxed, paddingTop, paddingBottom}) => {
 
   const blockClasses = classNames(
-    'flex w-full flex-col md:flex-row items-center justify-center py-12 md:py-12',
+    'flex w-full flex-col md:flex-row py-12 md:py-12 items-start justify-start',
     {
       'max-w-screen-lg': !!boxed,
       'pt-0': paddingTop === "0",

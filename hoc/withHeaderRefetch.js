@@ -79,7 +79,7 @@ const withHeaderRefetch = (Page, refreshData) => {
           boxed
           logourl="/img/logo-sostenibility-bianco.svg"
           menuList={footerDataInner}
-          copyright={`2021 © Copyright - Diventarenergia | P.IVA 04907900262`}
+          copyright={`2021 © Copyright - Sostenibility | P.IVA 04907900262`}
         />
         {isLoading && <div className="fixed w-full h-full bg-white top-0 left-0 z-20">
 

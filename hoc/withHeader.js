@@ -53,7 +53,7 @@ const withHeader =  Page => {
           boxed
           logourl="/img/logo-sostenibility-bianco.svg"
           menuList={footerData}
-          copyright={`2021 © Copyright - Diventarenergia | P.IVA 04907900262`}
+          copyright={`2021 © Copyright - Sostenibility | P.IVA 04907900262`}
         />
       </div>
     )

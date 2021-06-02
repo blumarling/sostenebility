@@ -23,7 +23,7 @@ const BlockImageParagraph = ({image, image_mobile, paragraph, paragraphColor,
           src={image || ''} alt=""
         />
         <img
-          className="w-full md:hidden object-cover absolute"
+          className="h-full md:hidden object-cover absolute"
           src={image_mobile || ''} alt=""
         />
       </div>
@@ -43,6 +43,7 @@ const BlockImageParagraph = ({image, image_mobile, paragraph, paragraphColor,
             labelColor={paragraphColor}
             uppercase={false}
             leftAlign
+            className="pl-0"
           />}
         </div>
       </div>
@@ -55,7 +56,10 @@ const BlockImageParagraphContainer = styled.div`
   overflow:hidden;
   /* max-height: 600px; */
   .image-block {
-    height: 50vw;
+    height: 100vw;
+    @media screen and (min-width: 1024px) {
+      height: 50vw;
+    }
   }
 `
 

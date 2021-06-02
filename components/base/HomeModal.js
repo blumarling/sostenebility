@@ -5,6 +5,7 @@ import gsap from "gsap"
 import CloseIcon from "../svg/CloseIcon"
 import H2 from "../typography/H2"
 import Paragraph from "../typography/Paragraph"
+import Button from "../base/Button"
 
 const HomeModal = ({onClose}) => {
   const modalEl = useRef(null)
@@ -61,13 +62,22 @@ const HomeModal = ({onClose}) => {
               </Paragraph>
             </div>
             <div>
-              <a href="#" className={`font-bold text-primary-900`}>Scopri di più</a>
+            <Button
+              naked
+              rightIcon="/img/icon-arrow-dx.svg"
+              label={'Scopri di più'}
+              link={'info@'}
+              labelColor={'text-primary-900'}
+              uppercase={false}
+              leftAlign
+              className="pl-0"
+            />
             </div>
           </div>
           <div className="w-full md:w-1/2">
             <img
               className="w-full md:h-full object-cover"
-              src={'https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&h=450&w=450&q=80'} alt=""
+              src={'http://api.sostenibility.it/wp-content/uploads/2021/05/sostenibility-riqualificazione-energetica-superbonus-mobile-min.jpg'} alt=""
             />
           </div>
         </Body>

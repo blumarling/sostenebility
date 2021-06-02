@@ -16,7 +16,7 @@ const BlockParagraphParagraph = ({title, titleColor, paragraph_01, paragraph_02,
     }
   )
   const innerBlockClassesLeft = classNames(
-    'md:flex-1 lg:pr-8 xl:pr-8 md:pr-4 px-8 md:py-16 lg:py-16 xl:py-20 p-8 pt-2',
+    'md:flex-1 lg:pr-8 xl:pr-8 md:pr-4 px-8 md:py-16 lg:py-16 xl:py-20 p-8 pt-2 flex',
     {
       'pt-2 xl:pt-6 md:pt-6 sm:pt-6': paddingTop === "0",
       'pb-2 xl:pb-6 md:pb-6 sm:pb-6': paddingBottom === "0"
@@ -33,14 +33,16 @@ const BlockParagraphParagraph = ({title, titleColor, paragraph_01, paragraph_02,
     <BlockParagraphParagraphContainer>
       <div className={blockClasses}>
         <div className={innerBlockClassesLeft}>
-          <Paragraph color={paragraphColor}>
-            {paragraph_01}
-          </Paragraph>
+          <ParagraphContainer
+            className={paragraphColor}
+            dangerouslySetInnerHTML={{__html: paragraph_01}}
+          />
         </div>
         <div className={innerBlockClassesRight}>
-          <Paragraph color={paragraphColor}>
-            {paragraph_02}
-          </Paragraph>
+          <ParagraphContainer
+            className={paragraphColor}
+            dangerouslySetInnerHTML={{__html: paragraph_02}}
+          />
         </div>
       </div>
     </BlockParagraphParagraphContainer>
@@ -52,6 +54,15 @@ const BlockParagraphParagraphContainer = styled.div.attrs({
   className:' w-full flex items-center justify-center'
 })`
   
+`
+
+const ParagraphContainer = styled.div.attrs({
+  className: 'font-display text-sm leading-snug md:text-sm md:leading-relaxed'
+})`
+  z-index:2;
+  white-space: break-spaces;
+  padding: 0px;
+  margin: 0px;
 `
 
 export default BlockParagraphParagraph

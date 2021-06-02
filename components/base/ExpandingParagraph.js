@@ -8,7 +8,7 @@ const ExpandingParagraph = ({ paragraph, paragraphColor, boxed, title}) => {
 
   const [isCompressed, setIsCompressed] = useState(true)
   const compressedText = (text) => {
-    return `${text.substr(0, 2060)} [...]`
+    return `${text.substr(0, 1060)} [...]`
   }
 
 

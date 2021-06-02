@@ -17,12 +17,16 @@ const SingleGridItem01 = ({ titleColor, paragraphColor,
       >
         {title}
       </H4>
-      <Paragraph
-        color={paragraphColor || ''}
-        className="mb-3 w-full"
+      <div
+        className="md:h-52"
       >
-        {paragraph}
-      </Paragraph>
+        <Paragraph
+          color={paragraphColor || ''}
+          className="mb-3 w-full"
+        >
+          {paragraph}
+        </Paragraph>
+      </div>
       {!!link && <Button
         naked
         rightIcon="/img/icon-arrow-dx.svg"
