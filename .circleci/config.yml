@@ -29,7 +29,7 @@ jobs:
           command: scp -r -o  StrictHostKeyChecking=no -P 25088 ./build.zip rw4crpqo@lhcp3181.webapps.net:/home/rw4crpqo/public_html;
       - run:
           name: enter-server
-          command: ssh -p 25088 -o  StrictHostKeyChecking=no rw4crpqo@lhcp3181.webapps.net  "cd public_html && find . ! -name build.zip -delete && unzip build.zip && mv -v ./out/.* ./ && mv -v ./out/* ./ && find . -name build.zip -delete && exit"
+          command: ssh -p 25088 -o  StrictHostKeyChecking=no rw4crpqo@lhcp3181.webapps.net  "cd public_html && find . ! -name build.zip -delete && unzip build.zip && mv ./out/.htaccess ./.htaccess && mv -v ./out/* ./ && find . -name build.zip -delete && exit"
 
 workflows:
   version: 2
