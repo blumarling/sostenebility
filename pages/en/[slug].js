@@ -16,7 +16,7 @@ const DynamicPage = ({ components }) => {
 }
 
 export async function getStaticPaths() {
-  if(typeof window !== 'undefined' && !process.env.NEXT_PUBLIC_IS_DEV) return
+  if(typeof window !== 'undefined' && process.env.NEXT_PUBLIC_IS_DEV === 'false') return
   
   // const lang = process.env.DEFAULT_LANG
   const locales = ['en']
@@ -47,6 +47,7 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ res, params }) {
+  if(typeof window !== 'undefined' && process.env.NEXT_PUBLIC_IS_DEV === 'false') return
   
   const { slug } = params
 
@@ -74,4 +75,6 @@ export async function getStaticProps({ res, params }) {
   }
 }
 
-export default withHeader(DynamicPage)
+export default process.env.NEXT_PUBLIC_IS_DEV === 'true'
+  ? withHeaderRefetch(DynamicPage, refreshData)
+  : withHeader(DynamicPage)

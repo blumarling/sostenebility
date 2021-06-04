@@ -63,7 +63,7 @@ const withHeaderRefetch = (Page, refreshData) => {
             seoInner?.og_image && <meta name="og:image" property="og:image" content={seoInner.og_image} />
           }
           {
-            process.NEXT_PUBLIC_IS_DEV
+            process.env.NEXT_PUBLIC_IS_DEV === 'true'
               ? <meta name="robots" content="noindex, nofollow" />
               : <meta name="robots" content="index, follow" />
           }

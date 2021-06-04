@@ -22,7 +22,7 @@ const TopProgressBar = dynamic(
 
 const MyApp = ({ Component, pageProps, router }) => {
   const store = useStore();
-
+  console.log(process.env)
   return (
     <>
       <TopProgressBar />

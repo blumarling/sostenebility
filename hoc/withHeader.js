@@ -37,7 +37,7 @@ const withHeader =  Page => {
             seo?.og_image && <meta name="og:image" property="og:image" content={seo.og_image} />
           }
           {
-            process.NEXT_PUBLIC_IS_DEV
+            process.env.NEXT_PUBLIC_IS_DEV === 'true'
               ? <meta name="robots" content="noindex, nofollow" />
               : <meta name="robots" content="index, follow" />
           }

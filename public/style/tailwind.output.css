@@ -1110,6 +1110,10 @@ select{
   text-decoration: none;
 }
 
+.visible{
+  visibility: visible;
+}
+
 .w-4{
   width: 1rem;
 }
