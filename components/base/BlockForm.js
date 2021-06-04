@@ -33,7 +33,7 @@ const BlockForm = ({title, titleColor, paragraph, paragraphColor,
     }
   )
 
-  const { postData } = useAxios(`http://api.sostenibility.it/wp-json/contact-form-7/v1/contact-forms/202/feedback`)
+  const { postData } = useAxios(`https://api.sostenibility.it/wp-json/contact-form-7/v1/contact-forms/202/feedback`)
   const [formObj, setFormObj] = useState({})
   const sendForm = async () => {
     try {
