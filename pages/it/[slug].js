@@ -16,6 +16,7 @@ const DynamicPage = ({ components }) => {
 }
 
 export async function getStaticPaths() {
+  if(typeof window !== 'undefined' && !process.env.NEXT_PUBLIC_IS_DEV) return
   
   // const lang = process.env.DEFAULT_LANG
   const locales = ['it']
@@ -72,6 +73,4 @@ export async function getStaticProps({ res, params }) {
   }
 }
 
-export default process.env.NEXT_PUBLIC_IS_DEV
-  ? withHeaderRefetch(DynamicPage, refreshData)
-  : withHeader(DynamicPage)
+export default withHeader(DynamicPage)

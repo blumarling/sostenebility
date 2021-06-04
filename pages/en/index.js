@@ -16,6 +16,8 @@ const DynamicPage = ({ components }) => {
 
 
 export async function getStaticProps({ res, params }) {
+  if(typeof window !== 'undefined' && !process.env.NEXT_PUBLIC_IS_DEV) return
+
   const lang = 'it'
 
   try {

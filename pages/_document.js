@@ -27,7 +27,7 @@ export default class MyDocument extends Document {
     return (
       <Html>
         <Head>
-          <link rel="stylesheet" href="/tailwind.output.css" />
+          <link rel="stylesheet" href="/style/tailwind.output.css" />
         </Head>
         <body className="font-sans">
           <Main />

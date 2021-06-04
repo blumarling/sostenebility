@@ -17,6 +17,7 @@ const DynamicPage = ({ components }) => {
 
 export async function getStaticProps({ res, params }) {
   const lang = 'it'
+  if(typeof window !== 'undefined' && !process.env.NEXT_PUBLIC_IS_DEV) return
 
   try {
 
@@ -41,6 +42,4 @@ export async function getStaticProps({ res, params }) {
   }
 }
 
-export default process.env.NEXT_PUBLIC_IS_DEV
-  ? withHeaderRefetch(DynamicPage, refreshData)
-  : withHeader(DynamicPage)
+export default withHeader(DynamicPage)

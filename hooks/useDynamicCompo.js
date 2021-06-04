@@ -6,17 +6,16 @@ const useDynamicCompo = ({components, componentType}) => {
   const [views, setViews] = useState([])
   
   useEffect(() => {
+    if(!components) return
     async function loadViews () {
       const componentPromises =
         components
-          .map(
-            async (item, index) => {
+          .map( (item, index) => {
               const View = importView(componentType ? componentType : item['component'] )
               return <View key={item.id ? item.id : index} {...item} />
             }
           )
-      const allViews = await Promise.all(componentPromises)
-      setViews(allViews)
+      setViews(componentPromises)
     }
     loadViews()
   }, [components])

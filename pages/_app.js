@@ -9,8 +9,7 @@ import dynamic from 'next/dynamic'
 import {wrapper} from '../redux/configStore'
 import theme from '../theme'
 import GlobalStyle from '../globalStyle'
-
-import '../tailwind.output.css'
+import { AnimateSharedLayout, motion } from "framer-motion"
 
 import "nprogress/nprogress.css";
 
@@ -21,7 +20,7 @@ const TopProgressBar = dynamic(
   { ssr: false },
 );
 
-const MyApp = ({ Component, pageProps }) => {
+const MyApp = ({ Component, pageProps, router }) => {
   const store = useStore();
 
   return (
@@ -34,7 +33,16 @@ const MyApp = ({ Component, pageProps }) => {
 
       <ThemeProvider theme={theme}>
         <PersistGate persistor={store.__persistor} loading={<div>Loading</div>}>
-          <Component {...pageProps} />
+          <AnimateSharedLayout>
+            <motion.div
+              key={router.asPath}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.2 }}
+            >
+              <Component {...pageProps} />
+            </motion.div>
+          </AnimateSharedLayout>
         </PersistGate>
       </ThemeProvider>
     </>
