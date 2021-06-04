@@ -9,7 +9,7 @@ import { useInView } from 'react-intersection-observer'
 const BlockTitleParagraph = ({title, titleColor, paragraph, paragraphColor, boxed, paddingTop, paddingBottom}) => {
   
   const controls = useAnimation();
-  const { ref, inView } = useInView({ threshold: 0.4 });
+  const { ref, inView } = useInView({ threshold: 0.2 });
   useEffect(() => {
     if (inView) {
       controls.start('visible');

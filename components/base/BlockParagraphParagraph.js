@@ -8,7 +8,7 @@ const BlockParagraphParagraph = ({title, titleColor, paragraph_01, paragraph_02,
   boxed, paddingTop, paddingBottom}) => {
 
   const controls = useAnimation();
-  const { ref, inView } = useInView({ threshold: 0.3 });
+  const { ref, inView } = useInView({ threshold: 0.2 });
   useEffect(() => {
     if (inView) {
       controls.start('visible');

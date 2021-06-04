@@ -32,7 +32,10 @@ const MyApp = ({ Component, pageProps, router }) => {
       <Head/>
 
       <ThemeProvider theme={theme}>
-        <PersistGate persistor={store.__persistor} loading={<div>Loading</div>}>
+        <PersistGate
+          persistor={store.__persistor}
+          loading={<div></div>}
+        >
           <AnimateSharedLayout>
             <motion.div
               key={router.asPath}
