@@ -1,11 +1,19 @@
 import classNames from 'classnames'
-import React from 'react'
+import React, { useEffect } from 'react'
 import styled, { css } from "styled-components"
-import H2 from '../typography/H2'
-import Paragraph from '../typography/Paragraph'
+import { motion, useAnimation } from "framer-motion"
+import { useInView } from 'react-intersection-observer'
 
 const BlockParagraphParagraph = ({title, titleColor, paragraph_01, paragraph_02, paragraphColor,
   boxed, paddingTop, paddingBottom}) => {
+
+  const controls = useAnimation();
+  const { ref, inView } = useInView({ threshold: 0.3 });
+  useEffect(() => {
+    if (inView) {
+      controls.start('visible');
+    }
+  }, [controls, inView]);
 
   const blockClasses = classNames(
     'flex w-full flex-col md:flex-row items-center justify-center py-24',
@@ -31,7 +39,23 @@ const BlockParagraphParagraph = ({title, titleColor, paragraph_01, paragraph_02,
   )
   return (
     <BlockParagraphParagraphContainer>
-      <div className={blockClasses}>
+      <motion.div
+        ref={ref}
+        initial='hidden'
+        animate={controls}
+        variants={{
+          hidden: { y: 35, opacity: 0 },
+          visible: {
+            y: 0,
+            opacity: 1,
+            transition: {
+              duration: 0.7,
+              delay: 0.5
+            }
+          }
+        }}
+        className={blockClasses}
+      >
         <div className={innerBlockClassesLeft}>
           <ParagraphContainer
             className={paragraphColor}
@@ -44,7 +68,7 @@ const BlockParagraphParagraph = ({title, titleColor, paragraph_01, paragraph_02,
             dangerouslySetInnerHTML={{__html: paragraph_02}}
           />
         </div>
-      </div>
+      </motion.div>
     </BlockParagraphParagraphContainer>
   )
 

@@ -7,6 +7,7 @@ import useModal from '../../hooks/useModal'
 import { toggleHomeModal } from '../../redux/common/actions'
 import H1 from '../typography/H1'
 import Button from './Button'
+import { motion } from "framer-motion"
 
 const Hero = ({ title = '', image = '', image_mobile = '', titleColor = '',
 full = '', leftBottomTitle  = '', buttonLabel, buttonLink,}) => {
@@ -21,13 +22,19 @@ full = '', leftBottomTitle  = '', buttonLabel, buttonLink,}) => {
       isImageThere={!!image}
       className="flex w-full max-h-screen items-center justify-center text-center bg-primary-900"
     >
-      <div className={classNames(
-        `max-w-screen-lg w-full h-full z-10 flex px-8 flex-col`,
-        {
-          'items-start justify-end text-left pb-16': leftBottomTitle,
-          'items-center justify-center text-center': !leftBottomTitle,
-        }
-      )}>
+      <motion.div
+        initial={{ y: 50, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.7, delay: 0.4 }}
+
+        className={classNames(
+          `max-w-screen-lg w-full h-full z-10 flex px-8 flex-col`,
+          {
+            'items-start justify-end text-left pb-16': leftBottomTitle,
+            'items-center justify-center text-center': !leftBottomTitle,
+          }
+        )}
+      >
         <H1 color={titleColor}>
           <span dangerouslySetInnerHTML={{__html: title}}/>
         </H1>
@@ -41,7 +48,7 @@ full = '', leftBottomTitle  = '', buttonLabel, buttonLink,}) => {
           labelColor="text-primary-900"
           uppercase
         />}
-      </div>
+      </motion.div>
       {!!image && <img
         className="h-full w-full object-cover hidden md:block absolute hero-pic"
         src={image} alt=""

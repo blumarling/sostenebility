@@ -1,10 +1,20 @@
 import classNames from 'classnames'
-import React from 'react'
+import React, { useEffect } from 'react'
 import styled, { css } from "styled-components"
 import H2 from '../typography/H2'
 import Paragraph from '../typography/Paragraph'
+import { motion, useAnimation } from "framer-motion"
+import { useInView } from 'react-intersection-observer'
 
 const BlockTitleParagraph = ({title, titleColor, paragraph, paragraphColor, boxed, paddingTop, paddingBottom}) => {
+  
+  const controls = useAnimation();
+  const { ref, inView } = useInView({ threshold: 0.4 });
+  useEffect(() => {
+    if (inView) {
+      controls.start('visible');
+    }
+  }, [controls, inView]);
 
   const blockClasses = classNames(
     'flex w-full flex-col md:flex-row py-12 md:py-12 items-start justify-start',
@@ -32,7 +42,23 @@ const BlockTitleParagraph = ({title, titleColor, paragraph, paragraphColor, boxe
 
   return (
     <BlockTitleParagraphContainer>
-      <div className={blockClasses}>
+      <motion.div
+        ref={ref}
+        initial='hidden'
+        animate={controls}
+        variants={{
+          hidden: { y: 35, opacity: 0 },
+          visible: {
+            y: 0,
+            opacity: 1,
+            transition: {
+              duration: 0.7,
+              delay: 0.6
+            }
+          }
+        }}        
+        className={blockClasses}
+      >
         <div className={innerBlockClassesLeft}>
           <H2 color={titleColor}>
             <span dangerouslySetInnerHTML={{__html: title}}/>
@@ -43,7 +69,7 @@ const BlockTitleParagraph = ({title, titleColor, paragraph, paragraphColor, boxe
             <span dangerouslySetInnerHTML={{__html: paragraph}}/>
           </Paragraph>
         </div>
-      </div>
+      </motion.div>
     </BlockTitleParagraphContainer>
   )
 
