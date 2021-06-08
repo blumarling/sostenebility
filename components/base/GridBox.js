@@ -5,17 +5,11 @@ import dynamic from 'next/dynamic'
 import styled, { css } from "styled-components"
 import H3 from '../typography/H3'
 
-const importView = componentName => {
-  return dynamic(() =>
-    import(`./${componentName}`)
-    .catch(() => import(`./NullCompo`))
-  )
-}
 
 const GridBox = ({title, titleColor, CompoListType, backgroundColor,
   boxed, paddingTop, paddingBottom, list = [], ...props }) => {
 
-  const { views } = useDynamicCompo({ components: list, componentType : CompoListType })
+  const views = useDynamicCompo({ components: list, componentType : CompoListType })
 
   const blockClasses = classNames(
     'flex w-full flex-col md:flex-row items-center justify-center px-8 py-12 ',

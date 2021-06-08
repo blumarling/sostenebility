@@ -5,7 +5,7 @@ import refreshData from '../utils/refreshData'
 
 const DynamicPage = ({ components }) => {
   
-  const { views } = useDynamicCompo({components})
+  const views = useDynamicCompo({components})
 
   return (
     <div>
