@@ -93,7 +93,7 @@ const SingleItem = ({title, url = '', id, children, closeOthers, closeAllSubMenu
   setCurrentActive, currentActive}) => {
 
   const [subItemOpen, setSubItemOpen] = useState(false)
-  const isMobile = window.innerWidth < 768
+  const isMobile = process.env.browser ? window?.innerWidth < 768 : false
 
   const onMouseOver = () => {
     if(isMobile) return

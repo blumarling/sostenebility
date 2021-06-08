@@ -13,13 +13,11 @@ const withHeader =  Page => {
 
     const { openModal, closeModal, isHomeModalOpen } = useModal()
     
-    const dispatch = useDispatch()  
-    const activeModalsSeen = useSelector(selectHomeModalSeen)  
-
     useEffect(() => {
+      const activeModalsSeen = localStorage.getItem('m_seen') 
       if(activeModalsSeen) return
       openModal({type: 'home'})
-      dispatch(toggleHomeModal())
+      localStorage.setItem('m_seen', true)
     }, [])
 
     return (
