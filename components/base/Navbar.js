@@ -98,8 +98,6 @@ const SingleItem = ({title, url = '', id, children, closeOthers, closeAllSubMenu
   (navigator.maxTouchPoints > 0) ||
   (navigator.msMaxTouchPoints > 0)));
   
-  console.log({isMobile, isTouchable})
-
   const onMouseOver = () => {
     if(isMobile) return
     if(currentActive === title && (isTouchable && !isMobile)) {
