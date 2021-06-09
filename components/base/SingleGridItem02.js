@@ -8,7 +8,7 @@ const SingleGridItem02 = ({ titleColor, paragraphColor,
   title, paragraph }) => {
 
   return (
-    <div className="flex flex-col justify-start items-start md:w-1/2 text-left md:px-6 h-28 md:h-26">
+    <div className="flex flex-col justify-start items-start md:w-1/2 text-left md:px-6 h-28 md:h-26 md:pl-0">
       <H4
         color={titleColor || ''}
         className="mb-2 w-full"
