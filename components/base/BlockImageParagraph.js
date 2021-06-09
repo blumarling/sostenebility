@@ -35,7 +35,7 @@ const BlockImageParagraph = ({image, image_mobile, paragraph, paragraphColor,
           <Paragraph color={paragraphColor}>
             <span dangerouslySetInnerHTML={{__html: paragraph}}/>
           </Paragraph>
-          {!!link && <Button
+          {!!link && <div className="mt-5"><Button
             naked
             rightIcon="/img/icon-arrow-dx.svg"
             label={'Scopri di più'}
@@ -44,7 +44,7 @@ const BlockImageParagraph = ({image, image_mobile, paragraph, paragraphColor,
             uppercase={false}
             leftAlign
             className="pl-0"
-          />}
+          /></div>}
         </div>
       </div>
     </BlockImageParagraphContainer>

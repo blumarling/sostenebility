@@ -2,23 +2,23 @@ import classNames from 'classnames'
 import React from 'react'
 import styled, { css } from "styled-components"
 
-const Button = ({href, label, className = '', leftIcon, rightIcon, labelColor,
+const Button = ({href, link, label, className = '', leftIcon, rightIcon, labelColor,
   naked, uppercase, nopad, leftAlign, onClick}) => {
 
-  if(!!href){
+  if(!!href || !!link){
     return (
       <ButtonContainer
-        href={href}
+        href={href || link}
         className={`${className} ${naked ? '' : 'bg-white'}`}
       >
         <span className={`w-full flex flex-row items-center ${leftAlign ? 'justify-start' : 'justify-center'}`}>
           {leftIcon && <img src={leftIcon} className="mr-4" alt="left icon" />}
-          <a href="#" className={classNames('font-title', {
+          <span href="#" className={classNames('font-title', {
             [labelColor]: labelColor,
             uppercase
           })}>
             {label}
-          </a>
+          </span>
           {rightIcon && <img src={rightIcon} className="ml-4" alt="right icon"/>}
         </span>
       </ButtonContainer>

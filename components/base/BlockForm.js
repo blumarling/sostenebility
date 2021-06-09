@@ -43,6 +43,7 @@ const BlockForm = ({title, titleColor, paragraph, paragraphColor,
       x.append("t-email", formObj['t-email'])
       x.append("t-phone", formObj['t-phone'])
       x.append("t-message", formObj['t-message'])
+      x.append("t-privacy", formObj['t-privacy'])
       const query = await postData({ params: x })
       alert('messaggio inviato con successo')
       window.location.href = '/'
@@ -51,8 +52,8 @@ const BlockForm = ({title, titleColor, paragraph, paragraphColor,
     }
 
   }
-
-  const isButtonAvailable = formObj['t-name'] &&  formObj['t-surname'] && formObj['t-email'] && formObj['t-message'] && formObj['t-email'].indexOf('@') > -1 && formObj['t-email'].indexOf('.') > -1
+  console.log(formObj['t-privacy'])
+  const isButtonAvailable = formObj['t-name'] &&  formObj['t-surname'] && formObj['t-email'] && formObj['t-message'] && formObj['t-privacy'] && formObj['t-email'].indexOf('@') > -1 && formObj['t-email'].indexOf('.') > -1
 
   return (
     <BlockFormContainer>
@@ -103,6 +104,20 @@ const BlockForm = ({title, titleColor, paragraph, paragraphColor,
             onChange={(e) => setFormObj((prev) => ({...prev, 't-message': e.target.value}))}
             style={{ resize: 'none' }}
           />
+          <div className="flex justify-start items-start mt-5">
+            <div
+              className="mx-5 mt-1 ml-0"
+            >
+              <input
+                type="checkbox"
+                className=" rounded-md"
+                onChange={(e) => setFormObj((prev) => ({...prev, 't-privacy': !!e.target.checked}))}
+                placeholder="privacy"
+              />
+            </div>
+            <div className="text-sm">Ho letto l'informativa sulla privacy e acconsento alla memorizzazione dei miei dati, secondo quanto stabilito dal regolamento europeo per la protezione dei dati personali n. 679/2016 (GDPR), per avere informazioni sui servizi di sostenibility.it</div>
+          </div>
+          
 
           <div
             className={`border bg-primary-900 text-white hover:bg-primary-600 rounded-md py-2 px-4 mt-5 cursor-pointer ${isButtonAvailable ? '' : 'opacity-50'}`}

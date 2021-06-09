@@ -9,7 +9,7 @@
     "start": "next start",
     "tailwind-config-viewer": "tailwind-config-viewer -o",
     "build:tailwind": "NODE_ENV=production tailwindcss build tailwind/index.css -o public/style/tailwind.output.css",
-    "dev:tailwind": "tailwindcss build tailwind/index.css -o public/tailwind.output.css"
+    "dev:tailwind": "tailwindcss build tailwind/index.css -o public/style/tailwind.output.css"
   },
   "dependencies": {
     "@svgr/webpack": "^5.5.0",
