@@ -12,14 +12,14 @@ const Button = ({href, label, className = '', leftIcon, rightIcon, labelColor,
         className={`${className} ${naked ? '' : 'bg-white'}`}
       >
         <span className={`w-full flex flex-row items-center ${leftAlign ? 'justify-start' : 'justify-center'}`}>
-          {leftIcon && <img src={leftIcon} className="mr-4"/>}
+          {leftIcon && <img src={leftIcon} className="mr-4" alt="left icon" />}
           <a href="#" className={classNames('font-title', {
             [labelColor]: labelColor,
             uppercase
           })}>
             {label}
           </a>
-          {rightIcon && <img src={rightIcon} className="ml-4"/>}
+          {rightIcon && <img src={rightIcon} className="ml-4" alt="right icon"/>}
         </span>
       </ButtonContainer>
     )
@@ -30,14 +30,14 @@ const Button = ({href, label, className = '', leftIcon, rightIcon, labelColor,
       onClick={onClick}
     >
       <span className={`w-full flex flex-row items-center ${leftAlign ? 'justify-start' : 'justify-center'}`}>
-        {leftIcon && <img src={leftIcon} className="mr-4"/>}
+        {leftIcon && <img src={leftIcon} className="mr-4" alt="left icon"/>}
         <a href="#" className={classNames('font-title', {
           [labelColor]: labelColor,
           uppercase
         })}>
           {label}
         </a>
-        {rightIcon && <img src={rightIcon} className="ml-4"/>}
+        {rightIcon && <img src={rightIcon} className="ml-4" alt="right icon"/>}
       </span>
     </ButtonContainerDIV>
   )

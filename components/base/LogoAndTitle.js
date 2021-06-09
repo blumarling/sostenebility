@@ -16,7 +16,7 @@ const LogoAndTitle = ({ title, titleColor, boxed, paddingTop, paddingBottom }) =
     <div className="flex-col flex items-center justify-center">
       <div className={blockClasses}>
         <H2 color={titleColor} className="mb-4">{title}</H2>
-        <img src="/img/italia-solare.jpg" className="w-52 mt-5"/>
+        <img src="/img/italia-solare.jpg" className="w-52 mt-5" alt="logo and title"/>
       </div>
     </div>
   )

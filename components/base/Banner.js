@@ -19,7 +19,10 @@ const Banner = ({title, titleColor, paragraph, paragraphColor,
       <div className={blockClasses}>
         <BannerContainer>
           <div className="xl:w-1/4 md:w-1/3 p-4 md:p-8">
-            <img src="/img/smart-partner.jpg" />
+            <img 
+              src="/img/smart-partner.jpg"
+              alt="smart partner"
+            />
           </div>
           <div className="flex flex-1 flex-col">
             <H2 color={titleColor} className="mb-4">{title}</H2>

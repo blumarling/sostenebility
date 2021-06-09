@@ -14,7 +14,7 @@ const Navbar = ({menuList = [], logourl = '', boxed}) => {
   const [menuMobileOpen, setMenuMobileOpen] = useState(false)
 
   const boxClasses = classNames(
-    `flex items-center justify-between w-full`,
+    `flex items-center justify-between w-full navbaritem`,
     {
       'max-w-screen-lg': !!boxed
     }
@@ -31,7 +31,7 @@ const Navbar = ({menuList = [], logourl = '', boxed}) => {
   return (
     <>
       <div className="w-full py-4 px-10 flex justify-center items-center bg-primary-900">
-        <img src="./img/phone-call.svg" className="h-4 mr-2"/>
+        <img src="./img/phone-call.svg" className="h-4 mr-2" alt="navbar"/>
         <a href="tel:+39043873485" className="text-white underline">
           Hai un'urgenza? Chiama subito
         </a>
@@ -46,10 +46,10 @@ const Navbar = ({menuList = [], logourl = '', boxed}) => {
                 setCurrentActive={setCurrentActive}
                 currentActive={currentActive}
                 closeAllSubMenu={() => {
-                  closeAllSubMenu()
+                  // closeAllSubMenu()
                 }}
                 closeOthers={() => {
-                  setCloseAllSubMenu(prev => prev + 1)
+                  // setCloseAllSubMenu(prev => prev + 1)
                 }}
               />)
             }
@@ -74,7 +74,7 @@ const Navbar = ({menuList = [], logourl = '', boxed}) => {
                 key={item.id}
                 setCurrentActive={setCurrentActive}
                 currentActive={currentActive}
-                closeAllSubMenu={closeAllSubMenu}
+                closeAllSubMenu={() => {}}
                 closeOthers={() => {
                   setCloseAllSubMenu(prev => prev + 1)
                   closeMobileMenu(false)
@@ -93,12 +93,23 @@ const SingleItem = ({title, url = '', id, children, closeOthers, closeAllSubMenu
   setCurrentActive, currentActive}) => {
 
   const [subItemOpen, setSubItemOpen] = useState(false)
-  const isMobile = process.env.browser ? window?.innerWidth < 768 : false
+  const isMobile = !!process.browser && window?.innerWidth < 768
+  const isTouchable = !!process.browser && ((('ontouchstart' in window) ||
+  (navigator.maxTouchPoints > 0) ||
+  (navigator.msMaxTouchPoints > 0)));
+  
+  console.log({isMobile, isTouchable})
 
   const onMouseOver = () => {
     if(isMobile) return
+    if(currentActive === title && (isTouchable && !isMobile)) {
+      setSubItemOpen(false);
+      setCurrentActive(null);
+      closeOthers();
+      return
+    }
     setCurrentActive(title);
-    closeOthers();
+    // closeOthers();
     setSubItemOpen(true);
   }
 
@@ -118,8 +129,8 @@ const SingleItem = ({title, url = '', id, children, closeOthers, closeAllSubMenu
           onClick={closeOthers}
         >
           <MenuListEl
-            onMouseOver={onMouseOver}
-            onClick={() => {
+            onMouseOver={(isTouchable && !isMobile) ? () => {} : onMouseOver}
+            onClick={(isTouchable && !isMobile) ? onMouseOver : () => {
               closeOthers();
               setCurrentActive(null)
             }}
@@ -129,8 +140,8 @@ const SingleItem = ({title, url = '', id, children, closeOthers, closeAllSubMenu
           </MenuListEl>
         </Link> :
         <MenuListElDiv
-          onMouseOver={onMouseOver}
-          onClick={isMobile ? () => {} : () => {
+          onMouseOver={(isTouchable && !isMobile) ? () => {} : onMouseOver}
+          onClick={(isTouchable && !isMobile) ? onMouseOver : isMobile ? () => {} : () => {
             closeOthers();
             setCurrentActive(null)
           }}
@@ -140,7 +151,7 @@ const SingleItem = ({title, url = '', id, children, closeOthers, closeAllSubMenu
         </MenuListElDiv>
       }
       {children?.length > 0 && (subItemOpen || isMobile) && (
-        <SecondLevelMenu>
+        <SecondLevelMenu className="navbaritem">
           { children?.map(subitem => (
             <Link href={subitem.url} passHref key={subitem.id}>
               <MenuListEl

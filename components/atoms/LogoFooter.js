@@ -7,6 +7,7 @@ const LogoFooter = ({src}) => {
     <LogoFooterContainer href="#">
       <img className="md:h-10 h-10 w-auto"
         src={src || 'https://tailwindui.com/img/logos/workflow-mark-indigo-600.svg'}
+        alt="logo footer"
       />
     </LogoFooterContainer>
   )

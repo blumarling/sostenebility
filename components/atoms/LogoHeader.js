@@ -9,6 +9,7 @@ const LogoHeader = ({src, href}) => {
       <LogoHeaderContainer>
         <img className="md:h-16 h-12 w-auto"
           src={src || ''}
+          alt="logo header"
         />
       </LogoHeaderContainer>
     </Link>

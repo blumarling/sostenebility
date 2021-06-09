@@ -7,6 +7,7 @@ const Hamburger = ({onClick}) => {
     <HamburgerContainer onClick={onClick}>
       <img className="h-full w-full"
         src={'./img/hamburger-icon.svg'}
+        alt="hamburger"
       />
     </HamburgerContainer>
   )
