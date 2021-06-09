@@ -51,16 +51,16 @@ const withHeaderRefetch = (Page, refreshData) => {
     return (
       <div>
         <Head>
-          <title>Sostenibility || {seoInner?.title || 'Home'}</title>
-          <link href={seoInner.canonical} rel="canonical" />
-          {seoInner?.description && <meta name="description" content={seoInner.description} />}
+          <title>Sostenibility - {seo?.title}</title>
+          <link href={seo.canonical} rel="canonical" />
+          {seo?.description && <meta name="description" content={seo.description} />}
           {
-            seoInner.og_title
-              ? <meta name="og:title" property="og:title" content={seoInner.og_title}/>
-              : <meta name="og:title" property="og:title" content={seoInner.title}/>
+            seo.og_title
+              ? <meta name="og:title" property="og:title" content={seo.og_title}/>
+              : <meta name="og:title" property="og:title" content={seo.title}/>
           }
           {
-            seoInner?.og_image && <meta name="og:image" property="og:image" content={seoInner.og_image} />
+            seo?.og_image && <meta name="og:image" property="og:image" content={seo.og_image} />
           }
           {
             process.env.NEXT_PUBLIC_IS_DEV === 'true'
