@@ -68,6 +68,7 @@ const HomeModal = ({onClose}) => {
               label={'Scopri di più'}
               link={'/nanotecnologia'}
               labelColor={'text-primary-900'}
+              onClick={() => localStorage.setItem('m_seen', true)}
               uppercase={false}
               leftAlign
               className="pl-0"
