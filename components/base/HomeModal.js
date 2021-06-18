@@ -6,10 +6,12 @@ import CloseIcon from "../svg/CloseIcon"
 import H2 from "../typography/H2"
 import Paragraph from "../typography/Paragraph"
 import Button from "../base/Button"
+import { useRouter } from 'next/router'
 
 const HomeModal = ({onClose}) => {
   const modalEl = useRef(null)
   const backgroundEl = useRef(null)
+  const router = useRouter()
 
   useEffect(() => {
     document.querySelector('html').style.overflowY = 'hidden'
@@ -66,9 +68,11 @@ const HomeModal = ({onClose}) => {
               naked
               rightIcon="/img/icon-arrow-dx.svg"
               label={'Scopri di più'}
-              link={'/nanotecnologia'}
               labelColor={'text-primary-900'}
-              onClick={() => localStorage.setItem('m_seen', true)}
+              onClick={() => {
+                onClose()
+                router.push('/nanotecnologia')
+              }}
               uppercase={false}
               leftAlign
               className="pl-0"
