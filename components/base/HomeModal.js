@@ -70,6 +70,7 @@ const HomeModal = ({onClose}) => {
               label={'Scopri di più'}
               labelColor={'text-primary-900'}
               onClick={() => {
+                document.querySelector('html').style.overflowY = 'auto'
                 onClose()
                 router.push('/nanotecnologia')
               }}
