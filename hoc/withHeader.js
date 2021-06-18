@@ -15,6 +15,7 @@ const withHeader =  Page => {
     
     useEffect(() => {
       const activeModalsSeen = localStorage.getItem('m_seen') 
+      window.onbeforeunload = () => localStorage.removeItem('m_seen');
       if(activeModalsSeen) return
       openModal({type: 'home'})
       localStorage.setItem('m_seen', true)

@@ -66,7 +66,7 @@ const HomeModal = ({onClose}) => {
               naked
               rightIcon="/img/icon-arrow-dx.svg"
               label={'Scopri di più'}
-              link={'info@'}
+              link={'/nanotecnologia'}
               labelColor={'text-primary-900'}
               uppercase={false}
               leftAlign
