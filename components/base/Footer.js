@@ -1,9 +1,8 @@
 import classNames from 'classnames'
 import React from 'react'
 import styled, {css} from "styled-components"
-import Button from "../atoms/Button"
-import Hamburger from '../atoms/Hamburger'
 import LogoFooter from "../atoms/LogoFooter"
+import Link from 'next/link'
 
 const Footer = ({menuList = [], logourl, boxed, copyright}) => {
 
@@ -31,7 +30,17 @@ const Footer = ({menuList = [], logourl, boxed, copyright}) => {
             menuList?.map(({title, children, id}) => (
               <div className="flex flex-1 md:px-4 flex-col mb-10 md:mb-0" key={id}>
                 <MenuLabel>{title}</MenuLabel>
-                {children?.map(({title, url, id}) => <MenuListEl key={id} href={url}>{title}</MenuListEl>)}
+                {children?.map(({title, url, id}) => (
+                  <Link
+                    href={url}
+                    passHref
+                    key={id}
+                  >
+                    <MenuListEl  href={url}>
+                      {title}
+                    </MenuListEl>
+                  </Link>
+                ))}
               </div>
             ))
           }
