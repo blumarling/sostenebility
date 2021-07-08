@@ -7,7 +7,7 @@ const LogoHeader = ({src, href}) => {
   return (
     <Link href={href} passHref>
       <LogoHeaderContainer>
-        <img className="md:h-16 h-12 w-auto"
+        <img className="-ml-3 h-16 md:h-24 w-auto"
           src={src || ''}
           alt="logo header"
         />

@@ -77,7 +77,7 @@ const withHeaderRefetch = (Page, refreshData) => {
           { isHomeModalOpen && <HomeModal onClose={() => closeModal({type: 'home'})} /> }
         <Footer
           boxed
-          logourl="/img/logo-sostenibility-bianco.svg"
+          logourl="/img/logo-sostenibility-white.svg"
           menuList={footerDataInner}
           copyright={`2021 © Copyright - Sostenibility | P.IVA 04907900262`}
         />
