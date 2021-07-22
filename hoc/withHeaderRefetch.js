@@ -9,7 +9,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { selectHomeModalSeen } from '../redux/common/selectors'
 
 const withHeaderRefetch = (Page, refreshData) => {
-  return ({ footerData, seo, headerList, components, slug, lang, ...props }) => {
+  return ({ footerData, seo, headerList, isLanding, components, slug, lang, ...props }) => {
 
     const { openModal, closeModal, isHomeModalOpen } = useModal()
     const [footerDataInner, setFooterDataInner] = useState(footerData)
@@ -43,6 +43,7 @@ const withHeaderRefetch = (Page, refreshData) => {
     }
 
     useEffect(() => {
+      if(isLanding) return
       if(activeModalsSeen) return
       openModal({type: 'home'})
       dispatch(toggleHomeModal())
@@ -70,7 +71,8 @@ const withHeaderRefetch = (Page, refreshData) => {
         </Head>
         <Navbar
           boxed
-          logourl="/img/logo.svg"
+          logourl="/img/logo-sostenibility-color.svg"
+          isLanding={isLanding}
           menuList={headerListInner}
         />
           <Page components={componentsInner} {...props} />

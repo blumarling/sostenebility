@@ -10,7 +10,7 @@ import Button from './Button'
 import { motion } from "framer-motion"
 
 const Hero = ({ title = '', image = '', image_mobile = '', titleColor = '',
-full = '', leftBottomTitle  = '', buttonLabel, buttonLink,}) => {
+full = '', leftBottomTitle  = '', buttonLabel, isAnchor = false, modalLink = false, buttonLink,}) => {
 
   const { scrollDown } = useCommonAnimations()
   const dispatch = useDispatch()  
@@ -41,9 +41,15 @@ full = '', leftBottomTitle  = '', buttonLabel, buttonLink,}) => {
         {buttonLabel && buttonLink && <Button
           className="mt-10"
           label={buttonLabel}
-          onClick={() => {
-            openModal({type: 'home'})
-            dispatch(toggleHomeModal())
+          link={!isAnchor && !openModal}
+          onClick={(e) => {
+            if(isAnchor) {
+              var element = document.querySelector(buttonLink);
+              element.scrollIntoView({ behavior: 'smooth', block: 'start'});
+            } else if(modalLink) {
+              openModal({type: 'home'})
+              dispatch(toggleHomeModal())
+            }
           }}
           labelColor="text-primary-900"
           uppercase

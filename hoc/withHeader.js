@@ -9,11 +9,11 @@ import { useDispatch, useSelector } from 'react-redux'
 import { selectHomeModalSeen } from '../redux/common/selectors'
 
 const withHeader =  Page => {
-  return ({ footerData, seo, headerList, ...props }) => {
+  return ({ footerData, seo, isLanding = false, headerList, ...props }) => {
 
     const { openModal, closeModal, isHomeModalOpen } = useModal()
-    
     useEffect(() => {
+      if(isLanding) return
       const activeModalsSeen = localStorage.getItem('m_seen') 
       window.onbeforeunload = () => localStorage.removeItem('m_seen');
       if(activeModalsSeen) return
@@ -45,6 +45,7 @@ const withHeader =  Page => {
           boxed
           logourl="/img/logo-sostenibility-color.svg"
           menuList={headerList}
+          isLanding={isLanding}
         />
           <Page {...props} />
           { isHomeModalOpen && <HomeModal onClose={() => closeModal({type: 'home'})} /> }

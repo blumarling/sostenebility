@@ -6,18 +6,25 @@ import LogoHeader from "../atoms/LogoHeader"
 import CaretDown from '../svg/CaretDown'
 import Link from 'next/link'
 import CloseIcon from '../svg/CloseIcon'
+import Button from './Button'
 
-const Navbar = ({menuList = [], logourl = '', boxed}) => {
+const Navbar = ({menuList = [], logourl = '', boxed, isLanding}) => {
 
   const [closeAllSubMenu, setCloseAllSubMenu] = useState(0)
   const [currentActive, setCurrentActive] = useState(null)
   const [menuMobileOpen, setMenuMobileOpen] = useState(false)
+  
+  const [isMobile, setIsMobile] = useState(false)
+  useEffect(() => setIsMobile(!!process.browser && window?.innerWidth < 768), [])
 
   const boxClasses = classNames(
-    `flex items-center justify-between w-full navbaritem`,
     {
-      'max-w-screen-lg': !!boxed
-    }
+      'max-w-screen-lg': !!boxed,
+      'justify-center md:justify-between': isLanding,
+      'justify-between' : !isLanding
+    },
+    `flex items-center w-full navbaritem`,
+
   )
   const openMobileMenu = () => {
     document.querySelector('html').style.overflowY = 'hidden'
@@ -30,16 +37,16 @@ const Navbar = ({menuList = [], logourl = '', boxed}) => {
 
   return (
     <>
-      <div className="w-full py-4 px-10 flex justify-center items-center bg-primary-900">
+      {!isLanding || isMobile && <div className="w-full py-4 px-10 flex justify-center items-center bg-primary-900">
         <img src="./img/phone-call.svg" className="h-4 mr-2" alt="navbar"/>
         <a href="tel:+39043873485" className="text-white underline">
           Hai un'urgenza? Chiama subito
         </a>
-      </div>
+      </div>}
       <NavbarContainer ariaLabel="Global">
         <div className={boxClasses}>
           <LogoHeader src={logourl} href="/" />
-          <div className="hidden md:flex md:ml-10 md:pr-4 md:space-x-8">
+          {!isLanding && <div className="hidden md:flex md:ml-10 md:pr-4 md:space-x-8">
             {
               menuList?.map(item => <SingleItem {...item}
                 key={item.id}
@@ -53,12 +60,22 @@ const Navbar = ({menuList = [], logourl = '', boxed}) => {
                 }}
               />)
             }
-          </div>
-          <Hamburger onClick={openMobileMenu} />
+          </div>}
+          {isLanding && <div className="hidden md:flex justify-center items-center">
+            <Button
+              label={'Chiama ora'}
+              labelColor={'text-white'}
+              uppercase={false}
+              className="bg-primary-900 text-center pt-3 pb-3 shadow-md "
+              link={'tel:+39043873485'}
+              leftAlign={false}
+            />
+          </div>}
+          {!isLanding && <Hamburger onClick={openMobileMenu} />}
         </div>
 
         {/* menu mobile */}
-        <div
+        {!isLanding && <div
           className={classNames(
             `fixed top-0 left-0 w-full h-full bg-white z-50 flex flex-col p-12 pt-24 mobile-menu`,
             {
@@ -81,7 +98,7 @@ const Navbar = ({menuList = [], logourl = '', boxed}) => {
                 }}
               />)
             }
-          </div>
+          </div>}
       </NavbarContainer>
     </>
   )

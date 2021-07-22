@@ -7,7 +7,7 @@ import H3 from '../typography/H3'
 
 
 const GridBox = ({title, titleColor, CompoListType, backgroundColor,
-  boxed, paddingTop, paddingBottom, list = [], ...props }) => {
+  boxed, paddingTop, paddingBottom, list = [], centered, ...props }) => {
 
   const views = useDynamicCompo({ components: list, componentType : CompoListType })
 
@@ -30,7 +30,9 @@ const GridBox = ({title, titleColor, CompoListType, backgroundColor,
         </div>
       )}
       <div className={blockClasses}>
-        <GridBoxContainer>
+        <GridBoxContainer
+          className={`${centered ? 'justify-center items-center' : ''}`}
+        >
           {views}
         </GridBoxContainer>
       </div>
