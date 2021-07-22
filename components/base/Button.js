@@ -3,7 +3,7 @@ import React from 'react'
 import styled, { css } from "styled-components"
 
 const Button = ({href, link, label, className = '', leftIcon, rightIcon, labelColor,
-  naked, uppercase, nopad, leftAlign, onClick}) => {
+  naked, uppercase, nopad, leftAlign = false, onClick}) => {
 
   if(!!href || !!link){
     return (
@@ -11,9 +11,9 @@ const Button = ({href, link, label, className = '', leftIcon, rightIcon, labelCo
         href={href || link}
         className={`${className} ${naked ? '' : 'bg-white'}`}
       >
-        <span className={`w-full flex flex-row items-center ${leftAlign ? 'justify-start' : 'justify-center'}`}>
-          {leftIcon && <img src={leftIcon} className="mr-4" alt="left icon" />}
-          <span href="#" className={classNames('font-title', {
+        <span className={`w-full  flex flex-row items-center ${leftAlign ? 'justify-start' : 'justify-center'}`}>
+        {leftIcon && <img src={leftIcon} className="mr-4" alt="left icon"/>}
+          <span className={classNames('font-title', {
             [labelColor]: labelColor,
             uppercase
           })}>
@@ -26,19 +26,19 @@ const Button = ({href, link, label, className = '', leftIcon, rightIcon, labelCo
   }
   return (
     <ButtonContainerDIV
-      className={`${className} ${naked ? '' : 'bg-white'}`}
+      className={`${className} ${naked ? '' : 'bg-white'} cursor-pointer`}
       onClick={onClick}
     >
-      <span className={`w-full flex flex-row items-center ${leftAlign ? 'justify-start' : 'justify-center'}`}>
+      <div className={`w-full flex flex-row items-center ${leftAlign ? 'justify-start' : 'justify-center'}`}>
         {leftIcon && <img src={leftIcon} className="mr-4" alt="left icon"/>}
-        <a href="#" className={classNames('font-title', {
+        <div className={classNames('font-title', {
           [labelColor]: labelColor,
           uppercase
         })}>
           {label}
-        </a>
+        </div>
         {rightIcon && <img src={rightIcon} className="ml-4" alt="right icon"/>}
-      </span>
+      </div>
     </ButtonContainerDIV>
   )
 }

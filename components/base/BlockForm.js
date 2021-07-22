@@ -57,7 +57,7 @@ const BlockForm = ({title, titleColor, paragraph, paragraphColor,
 
   return (
     <BlockFormContainer>
-      <div className={blockClasses}>
+      <div className={blockClasses} id="form">
         <div className={innerBlockClassesLeft}>
           <H2
             color={titleColor}

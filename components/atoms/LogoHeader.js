@@ -2,7 +2,7 @@ import Link from 'next/link'
 import React from 'react'
 import styled, {css} from "styled-components"
 
-const LogoHeader = ({src, href}) => {
+const LogoHeader = ({src, href, isFull}) => {
 
   return (
     <Link href={href} passHref>

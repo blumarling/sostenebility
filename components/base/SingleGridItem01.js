@@ -9,7 +9,7 @@ const SingleGridItem01 = ({ titleColor, paragraphColor,
   title, paragraph, link, image }) => {
 
   return (
-    <div className="flex flex-col justify-between items-center md:w-1/3 mb-20 text-center px-6 h-80 md:mb-0">
+    <div className="flex flex-col justify-start md:justify-between items-center md:w-1/3 mb-16 text-center px-6 h-50 md:h-80 md:mb-0">
       <img src={image} className="w-20 mb-7" alt="icon"/>
       <H4
         color={titleColor || ''}
