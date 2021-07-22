@@ -28,11 +28,22 @@ export default class MyDocument extends Document {
       <Html>
         <Head>
           <link rel="stylesheet" href="/style/tailwind.output.css" />
+          <meta name="google-site-verification" content="3tjDrUqucWZDX0vyXQivt3WWfSgxDKJcBVNhQqefLuk" />
         </Head>
         <body className="font-sans">
           <Main />
           <NextScript />
           <div id="modals"></div>
+          <script async src="https://www.googletagmanager.com/gtag/js?id=G-MGV16WG54E"></script>
+          <script
+            dangerouslySetInnerHTML={{
+              __html: `window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+            
+              gtag('config', 'G-MGV16WG54E');`
+            }}
+          />
         </body>
       </Html>
     )
