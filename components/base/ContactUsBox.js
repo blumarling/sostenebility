@@ -5,7 +5,6 @@ import styled, {css} from "styled-components"
 import Button from './Button'
 
 const ContactUsBox = ({title, link}) => {
-  console.log({title, link})
   const boxClasses = classNames(
     `flex items-center justify-center w-full md:flex-col flex-col`,
     {
