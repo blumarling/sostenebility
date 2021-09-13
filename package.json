@@ -7,6 +7,7 @@
     "build": "next build",
     "export": "npm run build:tailwind && NODE_ENV=production next build && NODE_ENV=production next export",
     "start": "next start",
+    "generate:sitemap": "next-sitemap --config next-sitemap.js",
     "tailwind-config-viewer": "tailwind-config-viewer -o",
     "build:tailwind": "NODE_ENV=production tailwindcss build tailwind/index.css -o public/style/tailwind.output.css",
     "dev:tailwind": "tailwindcss build tailwind/index.css -o public/style/tailwind.output.css"
@@ -40,5 +41,8 @@
     "tailwind-config-viewer": "^1.5.0",
     "tailwindcss": "^2.0.1",
     "tailwindcss-children": "^2.1.0"
+  },
+  "devDependencies": {
+    "next-sitemap": "^1.6.140"
   }
 }
