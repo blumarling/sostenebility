@@ -52,7 +52,7 @@ const withHeaderRefetch = (Page, refreshData) => {
     return (
       <div>
         <Head>
-          <title>Sostenibility - {seo?.title}</title>
+          <title>{seo?.title} - Sostenibility</title>
           <link href={seo.canonical} rel="canonical" />
           {seo?.description && <meta name="description" content={seo.description} />}
           {

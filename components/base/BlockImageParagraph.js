@@ -20,11 +20,11 @@ const BlockImageParagraph = ({image, image_mobile, paragraph, paragraphColor,
       <div className="md:w-1/2 image-block flex items-center justify-center relative overflow-hidden">
         <img
           className="w-full h-full hidden md:block object-cover absolute"
-          src={image || ''} alt=""
+          src={image.url || ''} alt={image.alt || ''}
         />
         <img
           className="h-full md:hidden object-cover absolute"
-          src={image_mobile || ''} alt=""
+          src={image_mobile.url || ''} alt={image_mobile.alt || ''}
         />
       </div>
       <div className="md:w-1/2 lg:p-24 lg:py-0 xl:px-16 md:p-16 md:py-0 p-8 py-12 flex justify-center flex-col items-center">
