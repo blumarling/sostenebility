@@ -3,7 +3,7 @@ import * as componentsList from "../components/base";
 
 const useDynamicCompo = ({ components, componentType, isHome }) => {
   return components.map((item, index) => {
-    if (componentType === "Hero" && isHome) {
+    if (item["component"] === "Hero" && isHome) {
       const View = componentsList[`HeroHome`];
       return <View key={item.id ? item.id : index} {...item} />;
     } else {
