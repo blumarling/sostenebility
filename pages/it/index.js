@@ -5,7 +5,7 @@ import withHeaderRefetch from '../../hoc/withHeaderRefetch'
 
 const DynamicPage = ({ components }) => {
   
-  const views = useDynamicCompo({components})
+  const views = useDynamicCompo({components, isHome:true})
 
   return (
     <div>

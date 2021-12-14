@@ -11,6 +11,7 @@ export { default as ExpandingParagraph } from './ExpandingParagraph';
 export { default as Footer } from './Footer';
 export { default as GridBox } from './GridBox';
 export { default as Hero } from './Hero';
+export { default as HeroHome } from './HeroHome';
 export { default as HomeModal } from './HomeModal';
 export { default as LogoAndTitle } from './LogoAndTitle';
 export { default as Navbar } from './Navbar';
