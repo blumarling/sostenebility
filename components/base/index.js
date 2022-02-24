@@ -22,3 +22,4 @@ export { default as SingleGridItem01 } from './SingleGridItem01';
 export { default as SingleGridItem02 } from './SingleGridItem02';
 export { default as SingleTeamCard } from './SingleTeamCard';
 export { default as ContactUsBox } from './ContactUsBox';
+export { default as WorkWithUsBoxForm } from './WorkWithUsBoxForm';

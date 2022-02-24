@@ -20,21 +20,20 @@ export async function getStaticPaths() {
   
   // const lang = process.env.DEFAULT_LANG
   const locales = ['it']
-  
   try {
     
     const allPagesInAllLanguages = await Promise.all([
-      ...locales.map(lang => axios.get(`${process.env.NEXT_PUBLIC_API_URL}/wp/v2/pages?_fields[]=id&_fields[]=slug&lang=${lang}`) )
+      ...locales.map(lang => axios.get(`${process.env.NEXT_PUBLIC_API_URL}/wp/v2/pages?_fields[]=id&_fields[]=slug&per_page=50&lang=${lang}`) )
     ])
-
+    
     const paths = locales.reduce((prev, curr, index) => {
       return [
         ...prev,
         ...allPagesInAllLanguages[index].data
-          .map(({slug}) => ({ params: { slug, lang: curr} }))
+        .map(({slug}) => ({ params: { slug, lang: curr} }))
       ]
     }, [])
-
+    
     return {
       paths,
       fallback: false
@@ -75,6 +74,6 @@ export async function getStaticProps({ res, params }) {
   }
 }
 
-export default process.env.NEXT_PUBLIC_IS_DEV === 'true'
+export default process.env.NEXT_PUBLIC_IS_DEV === 'false'
   ? withHeaderRefetch(DynamicPage, refreshData)
   : withHeader(DynamicPage)

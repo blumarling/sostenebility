@@ -25,7 +25,7 @@ export async function getStaticPaths() {
   try {
     
     const allPagesInAllLanguages = await Promise.all([
-      ...locales.map(lang => axios.get(`${process.env.CMS_URL}/wp/v2/pages?_fields[]=id&_fields[]=slug&lang=${lang}`) )
+      ...locales.map(lang => axios.get(`${process.env.NEXT_PUBLIC_API_URL}/wp/v2/pages?_fields[]=id&_fields[]=slug&per_page=50&lang=${lang}`) )
     ])
 
     const paths = locales.reduce((prev, curr, index) => {
