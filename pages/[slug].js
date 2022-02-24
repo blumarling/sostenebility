@@ -74,6 +74,6 @@ export async function getStaticProps({ res, params }) {
   }
 }
 
-export default process.env.NEXT_PUBLIC_IS_DEV === 'false'
+export default process.env.NEXT_PUBLIC_IS_DEV === 'true'
   ? withHeaderRefetch(DynamicPage, refreshData)
   : withHeader(DynamicPage)
