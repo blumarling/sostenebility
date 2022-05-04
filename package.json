@@ -12,6 +12,10 @@
     "build:tailwind": "NODE_ENV=production tailwindcss build tailwind/index.css -o public/style/tailwind.output.css",
     "dev:tailwind": "tailwindcss build tailwind/index.css -o public/style/tailwind.output.css"
   },
+  "engines": {
+    "npm": ">=7.0.0",
+    "node": ">=16.0.0"
+  },
   "dependencies": {
     "@svgr/webpack": "^5.5.0",
     "@tailwindcss/aspect-ratio": "^0.2.0",
