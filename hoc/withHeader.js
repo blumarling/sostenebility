@@ -48,7 +48,7 @@ const withHeader =  Page => {
           isLanding={isLanding}
         />
           <Page {...props} />
-          { isHomeModalOpen && <HomeModal onClose={() => closeModal({type: 'home'})} /> }
+          {/* { isHomeModalOpen && <HomeModal onClose={() => closeModal({type: 'home'})} /> } */}
         <Footer
           boxed
           logourl="/img/logo-sostenibility-white.svg"

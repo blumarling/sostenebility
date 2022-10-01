@@ -76,7 +76,7 @@ const withHeaderRefetch = (Page, refreshData) => {
           menuList={headerListInner}
         />
           <Page components={componentsInner} {...props} />
-          { isHomeModalOpen && <HomeModal onClose={() => closeModal({type: 'home'})} /> }
+          {/* { isHomeModalOpen && <HomeModal onClose={() => closeModal({type: 'home'})} /> } */}
         <Footer
           boxed
           logourl="/img/logo-sostenibility-white.svg"
