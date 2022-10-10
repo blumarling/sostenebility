@@ -1,47 +1,19 @@
 import useDynamicCompo from '../hooks/useDynamicCompo'
 import withHeader from '../hoc/withHeader'
 import withHeaderRefetch from '../hoc/withHeaderRefetch'
+import axios from 'axios'
 import refreshData from '../utils/refreshData'
 
 const DynamicPage = ({ components }) => {
   
-  const views = useDynamicCompo({components, isHome:true})
-
   return (
-    <div>
-      { views }      
+    <div className=' h-screen text-center flex justify-center items-center bg-primary-900 text-white text-base'>
+      
+      <div>
+        <img src='https://sostenibility.it/img/logo-sostenibility-white.svg' className='w-56 h-auto' />
+        <div>work in progress</div></div> 
     </div>
   )
 }
 
-
-export async function getStaticProps({ res, params }) {
-  if(typeof window !== 'undefined' && process.env.NEXT_PUBLIC_IS_DEV === 'false') return
-  const lang = 'it'
-
-  try {
-    
-    const {
-      page,
-      headerList,
-      footerData
-    } = await refreshData({slug: 'home', lang})
-
-    return {
-      props: {
-        ...page,
-        footerData,
-        slug: 'home',
-        lang,
-        headerList
-      },
-    }
-
-  } catch(e) {
-    console.log({e})
-  }
-}
-
-export default process.env.NEXT_PUBLIC_IS_DEV === 'true'
-  ? withHeaderRefetch(DynamicPage, refreshData)
-  : withHeader(DynamicPage)
+export default DynamicPage
